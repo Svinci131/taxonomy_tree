@@ -1,0 +1,28 @@
+/* CURRENTLY IN: styles/main.css */
+.thumbnail {
+	width:200px;
+	height:auto;
+}
+
+.thumbnails {
+	display: inline-block;
+	float: left;
+}
+
+.photo {
+	display: inline-block;
+	margin-left:3px;
+	margin-right:3px;
+}
+
+.invisible {
+	display:none;
+}
+
+.border {
+	display:inline-block;
+	margin: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
