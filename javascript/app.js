@@ -39,10 +39,15 @@ function buildTree () {
 
     })
   }
-
 }
+//dynamincally builds a "tree" (obj) with the taxonomic categories
+//only used the main ones(doesn't account for Subclasses and Infraclasses, ect)
+
+//all animals, vertavrates, mammals, carnivores
 //console.log(animalList[22])//wolf
 //console.log(animalList[3])//badger
+
+//both felines
 //console.log(animalList[7])//lion
 //console.log(animalList[7])//tiger
 
@@ -54,9 +59,7 @@ function compare (item) {
     }
     return item[ tag ].text;
   });
-
-
-
+  //I should probably rename these
   var K = (tree[animalTags[0]]),
      P = (K[animalTags[1]]),
      C = (P[animalTags[2]]),
@@ -147,7 +150,7 @@ function compare (item) {
     var child = getChildObj (parent);
 
 
-  ///console.log(item.AnimalName, parent)
+    ///console.log(item.AnimalName, parent)
     if (typeof firstO !== "undefined" && typeof child !== "undefined") {  
       var holder = [];
       var temp = null;
@@ -261,7 +264,9 @@ function compare (item) {
   }
     //check O
 
-}//compare
+}//walks through the tree obj, if there's are animals in an the same kindgom that are also in the same phylum
+//it checks the class, order, family ect until there are no more relatives then it adds the new animal and its relative into the most specefic category
+//showing kids how/where species diverge 
 
 
 function randomAnimalGenerator  () {
@@ -270,8 +275,10 @@ function randomAnimalGenerator  () {
     // remove from animalList so we don't get dupes!
     animalList.splice( randomIndex, 1 );
     console.log(randomAnimal);
-    //compare(randomAnimal)
-}
+    compare(randomAnimal)
+}//grabs a random animal
+//removes it from the data obj
+//runs the compare function to find it's appropriate place in the tree
 
 
 /////
