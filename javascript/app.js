@@ -360,13 +360,46 @@ var Container = React.createClass({
           //console.log(node[ key ])//array of obj
 
           node[ key ].forEach (function (a){
-            console.log(a)
+            //console.log(a)
           })//doesn't work really
           // // return animals.map (function())
           // // console.log(key)
-          var test = (<div>{key}<div>test</div></div>)
-          // //key = node[ key ][ 1 ].AnimalName;//works
-          // console.log(key);//array of animal name string
+          // var numberOfPlaces = []
+         
+          // for (var i = 1; i <= node[ key ].length; ++i){
+          //   numberOfPlaces.push(i)
+          // }
+         
+          var indents = node[ key ].map(function (i, idx) {
+            return (
+             <div className= "border">
+              {i.AnimalName}
+             </div>
+            );
+          });
+
+          // var obj = {}
+
+          console.log()
+
+          //if (node[ key ].length !== 0){
+          // for (var i = )
+          //   var indents = (<div><div>{node[ key ].length}</div></div>)
+          // //}
+          
+
+          //var last = node[ key ].length;
+          //var middle = ((node[ key ].length)/2).toFixed();
+          //var first = 0;
+          // console.log(first,middle,last)
+          var test = (<div>{indents}</div>)
+
+          //var test = (<div>{node[ key ].length}</div>)
+          //   <div>{for (var i = 0; i <= node[ key ].length; ++i){
+                
+          // }
+          //var test = (<div>{key}<div>{node[ key ][0]}</div></div>)
+          //puts the 0 in each node so if there are mult node w a 0 were good
       }//if isnan
       
       else {
