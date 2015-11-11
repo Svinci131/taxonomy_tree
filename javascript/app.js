@@ -1,6 +1,22 @@
 var animalList = allAnimals.results.collection1
 var tree = {}
-buildTree () 
+// buildTree ();
+
+var events = new EventEmitter();
+events.on('foo', function() {
+  randomAnimalGenerator();
+  _render(  );
+});
+
+function _render(  ) {
+  console.log( tree )
+    React.render(
+     <Container data={JSON.stringify(tree)} now={Date.now()}/>,
+     document.getElementById('content')
+    );  
+}
+
+
 
 function buildTree () {
   for ( var i = 0; i < animalList.length; ++i ) {
@@ -39,6 +55,8 @@ function buildTree () {
 
     })
   }
+  console.log( tree )
+  _render( tree, events );
 }
 //dynamincally builds a "tree" (obj) with the taxonomic categories
 //only used the main ones(doesn't account for Subclasses and Infraclasses, ect)
@@ -83,8 +101,6 @@ function compare (item) {
     return _obj;
   }, {});
 
-  
-  
   var holder = [];
   var array = [];
   var holderx = null;
@@ -262,7 +278,6 @@ function compare (item) {
 
     }
   }
-    //check O
 
 }//walks through the tree obj, if there's are animals in an the same kindgom that are also in the same phylum
 //it checks the class, order, family ect until there are no more relatives then it adds the new animal and its relative into the most specefic category
@@ -274,7 +289,7 @@ function randomAnimalGenerator  () {
     var randomAnimal = animalList[ randomIndex ] ;
     // remove from animalList so we don't get dupes!
     animalList.splice( randomIndex, 1 );
-    console.log(randomAnimal);
+    //console.log(randomAnimal);
     compare(randomAnimal)
 }//grabs a random animal
 //removes it from the data obj
@@ -285,43 +300,70 @@ function randomAnimalGenerator  () {
 var Container = React.createClass({
   getInitialState: function() {
     return {
-      data: tree,
-      foo: null
+      // data: this.props.data,
+      foo: Date.now()
     }
   },
-  //foo = the tree after the render tree function
-  //handleClick:
-  handleClick: function() {
-    //
-
-    console.log(this.state.data);
-    if ( this.state.data ) {
-      this.setState({
-        foo: this.renderTree()
-      });   
-    }    
-   },
-   componentShouldUpdate: function(){
-     console.log(this.state.data);
-    if ( this.state.data ) {
-      this.setState({
-        foo: this.renderTree()
-      });   
-    }
+  //foo = the tree after the render tree function  
+  handleClick: function () {
+    // this.props.events.emit('foo');
+    randomAnimalGenerator();
+    this.setState({
+      foo: Math.random()
+    });
+    // console.log(this.props.data)
+    
+    //setState(data, callback) 
+  },
+   componentDidUpdate: function() {
+    // alert("componentDidUpdate")
    },
    //call the function walk that takes the props(the state obj) and a div w animalia in it
-  renderTree: function() {
-    console.log('here!', this.state, this.state.data.Animalia)
-    return this._walk( this.state.data, (<div><div>Animalia</div><div>Animalia</div></div>) );
+  renderTree: function( data ) {
+    // console.log('here!', this.state, this.state.data.Animalia)
+    return this._walk( data, (<div><div>Animalia</div><div>Animalia</div></div>) );
   },//returns divs with obj keys
   _walk: function( node, ptr ) {
+    if ( typeof node === "undefined" ) {
+      return ptr;
+    }
     var keys = Object.keys( node );
-    //takes each key of the node the animalia prop of tree in "data" stateobj
     if ( keys.length !== 0 ) {
+      //if it has more than one key 
       if ( keys.length === 0 && keys[ 0 ] === "undefined" ) {
         return (ptr);
       }
-      return keys.map(function( key, i ){
+      //for each key grab each 
+      
+      //so were saying go into that key #: and get each item in it (i)
+      //for the others were calling each key of the node key 
+      //props is an object caled children that equals
+      //IF the obj has a child thats a number 
+      //animals = each of those things 
+      //if it doesn't animals = nothing 
+      // prop is an object caled children that equals a div w that key and a div in that w the animals
+      //IF the obj has a child thats a number 
+
+      //what we need
+      //we need the numbers to be props 
+      return keys.map(function( key, i ){//took ou tthe i next to key
+         //console.log(key, "isnan")
+       if ( !isNaN(parseInt( key ) ) ) {
+          //console.log(key, "!isnan")
+          //if it's not a number turn it it's index
+          if (typeof node[ key ][ 0 ] === "undefined" ) {
+            return ptr;
+          }//if theres nothing there ignore
+          console.log(node[ key ])//array of obj
+          // var key = node[ key ].map (function (a){
+          //   return (a.AnimalName)
+          //   })//doesn't work really
+          // // return animals.map (function())
+          // // console.log(key)
+          // //key = node[ key ][ 0 ].AnimalName;
+          console.log(key);//array of animal name string
+        }
+        //console.log(key)
         var props = {
           children: (<div>
             {key}
@@ -350,21 +392,53 @@ var Container = React.createClass({
     }
   },
   render: function() {
-    console.log( this.state.foo );
-
-    return (<div>
-      <button onClick={this.handleClick} >guess</button>
-        <div>{this.state.foo}</div>
+    // console.log( this.state.foo );
+    // console.log('here')
+    return (<div data-foo={this.state.foo}>
+       <button onClick={this.handleClick}>guess</button>
+        <div>{this.renderTree( tree )}</div>
       </div>);
   }
 });
 
-// <div>{this.state.foo}</div>
+//
+// var Start = React.createClass ({
+//   getInitialState:function (){
+//     return {
+//       animal: null
+//     }
+//   },
+//   handleClick: function () {
+//    randomAnimalGenerator();
+//    console.log(tree)
+//    return(<div>test</div>)
+//   },
+//   render: function() {
+   
+//     return(
+//      <div> 
+//       hello
+//       <button onClick={this.handleClick} >guess</button>
+//       <Container data={tree} />
+//       </div>)
+//     }
 
-console.log('###', tree)
-React.render(
-  <Container data={tree} />,
-  document.getElementById('content')
-);
+// });
+
+
+
+// // React.render(
+// //    <button />,
+// //    document.getElementById('content')
+//<Container data={tree} />
+// // );
+
+
+buildTree();
+
+
+
+
+
 
 ////////////////////////
