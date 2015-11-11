@@ -334,41 +334,52 @@ var Container = React.createClass({
         return (ptr);
       }
       //for each key grab each 
-      
-      //so were saying go into that key #: and get each item in it (i)
-      //for the others were calling each key of the node key 
-      //props is an object caled children that equals
-      //IF the obj has a child thats a number 
-      //animals = each of those things 
-      //if it doesn't animals = nothing 
-      // prop is an object caled children that equals a div w that key and a div in that w the animals
-      //IF the obj has a child thats a number 
 
-      //what we need
-      //we need the numbers to be props 
       return keys.map(function( key, i ){//took ou tthe i next to key
          //console.log(key, "isnan")
+        // if (key === "Animalia") {
+        //   for (a in node[ key ]) {
+        //     console.log (key, a)
+        //   };
+        // }
+        //we need it to show key with it's children 
+        //it's not doing that bc they supposedly have the same key?
+        //div key 
+        //<div children
+            
        if ( !isNaN(parseInt( key ) ) ) {
+
+          //key = the same thing but w the animals inside it?
           //console.log(key, "!isnan")
           //if it's not a number turn it it's index
+          //var animal = {test:"test"}
           if (typeof node[ key ][ 0 ] === "undefined" ) {
             return ptr;
           }//if theres nothing there ignore
-          console.log(node[ key ])//array of obj
-          // var key = node[ key ].map (function (a){
-          //   return (a.AnimalName)
-          //   })//doesn't work really
+          //console.info( key, node[ key ], node )
+          //console.log(node[ key ])//array of obj
+
+          node[ key ].forEach (function (a){
+            console.log(a)
+          })//doesn't work really
           // // return animals.map (function())
           // // console.log(key)
-          // //key = node[ key ][ 0 ].AnimalName;
-          console.log(key);//array of animal name string
-        }
-        //console.log(key)
-        var props = {
+          var test = (<div>{key}<div>test</div></div>)
+          // //key = node[ key ][ 1 ].AnimalName;//works
+          // console.log(key);//array of animal name string
+      }//if isnan
+      
+      else {
+        var test = key;
+      }
+        
+
+      var props = {
           children: (<div>
-            {key}
+            {test}
+
           </div>),
-          key: key,
+          // key: key,
           className: 'border'
         }
         if ( typeof key === "undefined" || key === "undefined" ) {
