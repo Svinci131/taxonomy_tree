@@ -6,6 +6,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 		"collection1":[
 			//a
 			{	
+				//0
 				"AnimalName":"Aardvark",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -19,6 +20,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"index":1,"url":"https://en.wikipedia.org/wiki/Aardvark"},
 
 			{	
+				//1
 				"AnimalName":"African bush elephant",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -31,6 +33,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"index":8,"url":"https://en.wikipedia.org/wiki/African_bush_elephant"},
 			///b
 			{
+				//2
 				"AnimalName":"Bactrian camel",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordata","text":"Chordata"},
@@ -41,20 +44,21 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"Species":"C. bactrianus","Image":{"alt":"2011 Trampeltier 1528.JPG","href":"https://en.wikipedia.org/wiki/File:2011_Trampeltier_1528.JPG",
 				"src":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/2011_Trampeltier_1528.JPG/250px-2011_Trampeltier_1528.JPG","text":""},
 				"index":6,"url":"https://en.wikipedia.org/wiki/Bactrian_camel"},
-			{	
-				"AnimalName":"Bald Eagle",
-				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
-				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
-				"Class":{"href":"https://en.wikipedia.org/wiki/Mammal","text":"Aves"},
-				"Order":{"href":"https://en.wikipedia.org/wiki/Carnivora","text":"Accipitriformes"},
-				"Family":{"href":"https://en.wikipedia.org/wiki/Felidae","text":"Accipitridae"},
-				"Genus":{"href":"https://en.wikipedia.org/wiki/Panthera","text":"Haliaeetus"},
-				"Species":"H. leucocephalus",
-				"Image":{"alt":"Lion_waiting_in_Namibia.jpg",
-				"href":"https://en.wikipedia.org/wiki/File:FLion_waiting_in_Namibia.jpg",
-				"src":"https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg","text":""},
-				"index":8,"url":"https://en.wikipedia.org/wiki/Peregrine_falcon"},
+			// {	
+			// 	"AnimalName":"Bald Eagle",
+			// 	"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
+			// 	"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
+			// 	"Class":{"href":"https://en.wikipedia.org/wiki/Aves","text":"Aves"},
+			// 	"Order":{"href":"https://en.wikipedia.org/wiki/Carnivora","text":"Accipitriformes"},
+			// 	"Family":{"href":"https://en.wikipedia.org/wiki/Felidae","text":"Accipitridae"},
+			// 	"Genus":{"href":"https://en.wikipedia.org/wiki/Panthera","text":"Haliaeetus"},
+			// 	"Species":"H. leucocephalus",
+			// 	"Image":{"alt":"Lion_waiting_in_Namibia.jpg",
+			// 	"href":"https://en.wikipedia.org/wiki/File:FLion_waiting_in_Namibia.jpg",
+			// 	"src":"https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg","text":""},
+			// 	"index":8,"url":"https://en.wikipedia.org/wiki/bald_eagle"},
 			{
+				//3
 				"AnimalName":"Brown_bear",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -68,6 +72,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"index":5,"url":"https://en.wikipedia.org/wiki/Brown_bear"},
 			//c
 			{	
+				//4
 				"AnimalName":"Chipmunks",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -81,20 +86,21 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"src":"https://upload.wikimedia.org/wikipedia/commons/9/94/Tamias_minimus.jpg"},
 				"index":8,"url":"https://en.wikipedia.org/wiki/Least_chipmunk"},
 			//d	
-			{	
-				"AnimalName":"Deathstalker (aka Israeli yellow scorpion)",
-				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
-				"Phylum":{"href":"https://en.wikipedia.org/wiki/Arthropoda","text":"Arthropoda"},
-				"Class":{"href":"https://en.wikipedia.org/wiki/Arachnida","text":"Arachnida"},
-				"Order":{"href":"https://en.wikipedia.org/wiki/Scorpiones","text":"Scorpiones"},
-				"Family":{"href":"https://en.wikipedia.org/wiki/Buthidae","text":"Buthidae"},
-				"Genus":{"href":"https://en.wikipedia.org/wiki/Leiurus","text":"Leiurus"},
-				"Species":"L. quinquestriatus",
-				"Image":{"alt":"Deathstalker_ST_07.JPG","href":"https://en.wikipedia.org/wiki/Deathstalker#/media/File:Deathstalker_ST_07.JPG",
-				"src":"https://upload.wikimedia.org/wikipedia/commons/3/39/Deathstalker_ST_07.JPG","text":""},
-				"index":1,"url":"https://en.wikipedia.org/wiki/Deathstalker"},
+			// {	
+			// 	"AnimalName":"Deathstalker (aka Israeli yellow scorpion)",
+			// 	"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
+			// 	"Phylum":{"href":"https://en.wikipedia.org/wiki/Arthropoda","text":"Arthropoda"},
+			// 	"Class":{"href":"https://en.wikipedia.org/wiki/Arachnida","text":"Arachnida"},
+			// 	"Order":{"href":"https://en.wikipedia.org/wiki/Scorpiones","text":"Scorpiones"},
+			// 	"Family":{"href":"https://en.wikipedia.org/wiki/Buthidae","text":"Buthidae"},
+			// 	"Genus":{"href":"https://en.wikipedia.org/wiki/Leiurus","text":"Leiurus"},
+			// 	"Species":"L. quinquestriatus",
+			// 	"Image":{"alt":"Deathstalker_ST_07.JPG","href":"https://en.wikipedia.org/wiki/Deathstalker#/media/File:Deathstalker_ST_07.JPG",
+			// 	"src":"https://upload.wikimedia.org/wikipedia/commons/3/39/Deathstalker_ST_07.JPG","text":""},
+			// 	"index":1,"url":"https://en.wikipedia.org/wiki/Deathstalker"},
 			
 			{
+				//5
 				"AnimalName":"Donkey",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -108,6 +114,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 
 			//e
 			{	
+				//6
 				"AnimalName":"Emperor penguin",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -121,18 +128,18 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"index":1,"url":"https://en.wikipedia.org/wiki/Aardvark"},
 			//f
 			//g
-
+			//7
 			{	"AnimalName":"Giant panda",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
 				"Class":{"href":"https://en.wikipedia.org/wiki/Mammal","text":"Mammalia"},
-				"Order":{"href":"https://en.wikipedia.org/wiki/Bear","text":"Ursidae"},
+				"Order":{"href":"https://en.wikipedia.org/wiki/Carnivora","text":"Carnivora"},
 				"Family":{"href":"https://en.wikipedia.org/wiki/Bear","text":"Ursidae"},
 				"Genus":{"href":"https://en.wikipedia.org/wiki/Ailuropoda","text":"Ailuropoda"},
 				"Image":{"alt":"Grosser Panda.JPG","href":"https://en.wikipedia.org/wiki/File:Grosser_Panda.JPG","src":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/250px-Grosser_Panda.JPG","text":""},
 				"index":10,"url":"https://en.wikipedia.org/wiki/Giant_panda"},
 
-			{	
+			{	//8
 				"AnimalName":"Gray Wolf",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -147,7 +154,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"index":8,"url":"https://en.wikipedia.org/wiki/Gray_wolf"},
 
 			//h
-			{	
+			{	//9
 				"AnimalName":"Hamadryas_baboon",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},
@@ -160,7 +167,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"src":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Hamadryas_baboon.jpg/220px-Hamadryas_baboon.jpg","text":""},
 				"index":3,"url":"https://en.wikipedia.org/wiki/Hamadryas_baboon"},
 
-			{
+			{	//10
 				"AnimalName":"Honey_badger",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Chordate","text":"Chordata"},

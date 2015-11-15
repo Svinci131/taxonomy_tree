@@ -9,7 +9,7 @@ events.on('foo', function() {
 });
 
 function _render(  ) {
-  console.log( tree )
+  //console.log( tree )
     React.render(
      <Container data={JSON.stringify(tree)} now={Date.now()}/>,
      document.getElementById('content')
@@ -77,7 +77,7 @@ function compare (item) {
     }
     return item[ tag ].text;
   });
-  //I should probably rename these
+
   var K = (tree[animalTags[0]]),
      P = (K[animalTags[1]]),
      C = (P[animalTags[2]]),
@@ -86,6 +86,7 @@ function compare (item) {
      G = (F[animalTags[5]]); 
 
   var pointer = null;
+
   var obj = ['K', 'P', 'C','O', 'F', 'G'].reduce(function(_obj, currentLetter, idx){
     if ( pointer === null ) {
       _obj[ currentLetter ] = tree[ animalTags[ idx ] ];
@@ -104,85 +105,121 @@ function compare (item) {
   var holder = [];
   var array = [];
   var holderx = null;
-  
-  //console.log(typeof Object.keys(obj)[1])
-  function getChildTag (obj, L) {
+
+  function getParentTag (obj, par) {
     for (var i = 1; i <= 5; ++i) {
-      if (typeof L[animalTags[i]] !== "undefined") {
+      //console.log( par)
+      if (typeof par[animalTags[i]] !== "undefined") {
+        var j = i -1
+        return tags[j];
+      }
+    }
+  }
+  function getChildTag (obj, par) {
+    for (var i = 1; i <= 5; ++i) {
+      //console.log( par)
+      if (typeof par[animalTags[i]] !== "undefined") {
+        //console.log("childTag", L[animalTags[i]])
         return tags[i];
       }
     }
   }
-
   function getChildObj (L) {
     for (var i = 1; i <= 5; ++i) {
       if (typeof L[animalTags[i]] !== "undefined") {
         //console.log(L[animalTags[i]], F)
         var childObj = L[animalTags[i]]
-
+        //console.log("childObj", L[animalTags[i]])
         return childObj
 
       }
     }
   }
   function firstCheck (parent) {
-      var firstChild = parent[0];
-      //console.log(firstChild)
-      var holder = [];
-      var temp = null;
-      var length = firstChild.length;
-      var child = getChildObj (parent)
-      firstChild[length]  = item;
-      var  childTag = getChildTag (item, parent)
-      //console.log(item[childTag].text, item.Family.text)
+    var firstChild = parent[0];
+    //console.log(firstChild)
+    var holder = [];
+    var temp = null;
+    var length = firstChild.length;
+    var child = getChildObj (parent)//if is phylum this is class(looks like {carninvoraect})
+    firstChild[length]  = item;//add itembj to p array
+    // console.log(length, firstChild)
+    var  childTag = getChildTag (item, parent)
+    //var isThere = null;
 
-      for (var x = 0; x < length; x++){
-        if ( typeof firstChild[x] !== "undefined"){
-          //var catChildTag = 
+    for (var x = 0; x < length; x++) {
+    if ( typeof firstChild[x] !== "undefined"){
+        //console.log(firstChild[x])//animals in parent(chordoata)
+        var catchildTag = getChildTag (item, parent)//next group the class
+        
+        if (item[childTag].text === firstChild[x][childTag].text && item.AnimalName !== firstChild[x].AnimalName ){//move matches from o to f 
+          //console.log(childTag)//if they share the next label(class)
           
-          var catchildTag = getChildTag (item, parent)
+          temp = firstChild[x]; //each animal that shares class
 
-          if (item[childTag].text === firstChild[x][childTag].text){//move matches from o to f 
-            //console.log(getChildTag (item, label), getChildTag (cat[x],label))
-            temp = firstChild[x]; 
-            holder.push(temp);
-            
+          holder.push(temp);
+          //holder.push(item);//ADDED TODAY
+          //console.log(temp)
+          child[0] = holder;
+          //console.log(firstChild[x])
+          delete firstChild[x];
+          delete firstChild[length];  
+  
+        }//if match
+      }//if O[0][x] isnt undefined
+    }//for loop
 
-            child[0] = holder;
-            //console.log(child[0], F[0])
-            delete firstChild[x];
-            delete firstChild[length];    
-          }//if match
-        }//if O[0][x] isnt undefined
-      }//for loop
-    holder.push (item);
-    secondCheck (child)
+  if (holder[((holder.length)-1)] === item) {
+    console.log("match", item.AnimalName)
   }
+  else {
+    holder.push(item)
+  }
+  
+  //console.log(holder, child)
+  secondCheck (child)
 
-  //console.log(item)
+  //  //thirdCheck (child)
+  //  //console.log("firstchild", firstChild, "parent",parent,"child", child)//class
+  }
+  // //first check is seeing if the classes are the name if theyr the same 
+  
   function secondCheck (parent) {
-
     var firstO = parent[0];
     var child = getChildObj (parent);
-
-
-    ///console.log(item.AnimalName, parent)
+    //console.log("secondcheck", firstO, child)
     if (typeof firstO !== "undefined" && typeof child !== "undefined") {  
       var holder = [];
       var temp = null;
       var length = firstO.length;
       var  childTag = getChildTag (item, parent)
-      //console.log()
-      //F[0][length]  = item;
-      //console.log(item, childTag)
+      var  parTag = getParentTag (item, parent)
+      //firstCheck()
+      console.log(holder)
       for (var x = 0; x < length; x++){
         if ( typeof firstO[x] !== "undefined"){
-          //console.log(holder)
+          //console.log("firstO[x]", firstO[x])
 
+          // if (item[childTag].text === firstO[x][childTag].text && item.AnimalName !== firstO[x].AnimalName && holder.length !== 0 ){
+          //   //console.log( childTag, item[childTag].text , firstO[x][childTag].text, x)
+          //     //console.log(item.AnimalName, JSON.parse(JSON.stringify(firstO[x])));
+          //     temp = firstO[x]; 
+          //     console.log(temp)
+          //     holder.push(temp);
+
+          //     child[0]= holder;
+              
+              
+            
+          //   //delete F[0][length];
+          // }//if match
+          
+          //console.log("parent", parent, "firstO", firstO,"nexttag", childTag, "childObj", child)
           if (item[childTag].text === firstO[x][childTag].text && item.AnimalName !== firstO[x].AnimalName && holder.length !== 0 ){//move matches from o to f 
-              console.log( childTag, item[childTag].text , firstO[x][childTag].text, x)
-              console.log(item.AnimalName, JSON.parse(JSON.stringify(firstO[x])));
+              //console.log( childTag, item[childTag].text , firstO[x][childTag].text, x)
+              //console.log(item.AnimalName, JSON.parse(JSON.stringify(firstO[x])));
               temp = firstO[x]; 
+              console.log(temp)
               holder.push(temp);
 
               child[0]= holder;
@@ -193,15 +230,14 @@ function compare (item) {
           }//if match
           }//if O[0][x] isnt undefined
           
-        }//for loop
-            
+        }//for loop           
       }//if F[0] isnt undefined
   }//second check
-
   //setStatus (O);
   function setStatus (obj) {
     var group = obj; 
     var firstKey = group[0];
+    //console.log( '####', firstKey, obj )
     var status = 0;
     if (typeof firstKey !== "undefined") {
       status = 1; 
@@ -212,84 +248,52 @@ function compare (item) {
     return status;
   }
 
-
+  // console.log( 'F is ', F, setStatus( F ) )
   if (setStatus (F) === 1) {
     firstCheck (F)
   }
-
-  else {
-    if (setStatus (O) === 1) {
-      firstCheck (O)
-    }
-      //
     else {
-      
-      if (setStatus (C) === 1) {
-        firstCheck (C)
-        }
+      //console.log( 'O is ', O, setStatus( O ) )
+      if (setStatus (O) === 1) {
+        firstCheck (O)
+      }
+      //
+      else {
+        //console.log( 'C is ', C, setStatus( C ) )
+        if (setStatus (C) === 1) {
+          firstCheck (C)
+          }
         else {
-        
-          if (typeof P[0] !== "undefined") {  
-
-            var holder = [];
-            var temp = null;
-            for (var x = 0; x < P[0].length; x++){
-              
-              if ( typeof P[0][x] !== "undefined"){
-                //console.log(it)
-                if (item.Class.text === P[0][x].Class.text){
-                  
-                    temp = P[0][x]; 
-                    holder.push(temp);  
-                    delete P[0][x];       
-                }
-              }
-            }
-          holder.push (item);
-          C[0] = holder;
+          if (setStatus (P) === 1) {
+            console.log(P[0])
+            firstCheck (P)
+            firstCheck (C)
           } 
           else {
 
-            if (typeof K[0] !== "undefined") {
-              for (var x = 0; x < K[0].length; x++){
-                if (item.Phylum.text === K[0][x].Phylum.text){
-                  var holder = [K[0][x]]; 
-                  holder.push (item);
-              
-                  P[0] = holder;
-                  delete K[0][x];   
-                  //console.log(P[0])
-                  //console.log(K[0])
-
-                }
-              }
-
+            if (setStatus (K) === 1) {
+              firstCheck (K)
             } 
-            else {
-            //var holder = K[0];      
-            K[0] = array;
-            array.push (item); 
-            //console.log (array, item);
-            //console.log(K[0])
+            else {    
+            K[0] = [item];
             } 
             
           }
         }
 
+
     }
   }
+    //check O
 
-}//walks through the tree obj, if there's are animals in an the same kindgom that are also in the same phylum
-//it checks the class, order, family ect until there are no more relatives then it adds the new animal and its relative into the most specefic category
-//showing kids how/where species diverge 
-
+}//compare
 
 function randomAnimalGenerator  () {
     var randomIndex = Math.floor( Math.random()*animalList.length );
     var randomAnimal = animalList[ randomIndex ] ;
     // remove from animalList so we don't get dupes!
     animalList.splice( randomIndex, 1 );
-    //console.log(randomAnimal);
+    console.log(randomAnimal.AnimalName);
     compare(randomAnimal)
 }//grabs a random animal
 //removes it from the data obj
@@ -308,6 +312,7 @@ var Container = React.createClass({
   handleClick: function () {
     // this.props.events.emit('foo');
     randomAnimalGenerator();
+    console.log(tree)
     this.setState({
       foo: Math.random()
     });
@@ -335,24 +340,9 @@ var Container = React.createClass({
       }
       //for each key grab each 
 
-      return keys.map(function( key, i ){//took ou tthe i next to key
-         //console.log(key, "isnan")
-        // if (key === "Animalia") {
-        //   for (a in node[ key ]) {
-        //     console.log (key, a)
-        //   };
-        // }
-        //we need it to show key with it's children 
-        //it's not doing that bc they supposedly have the same key?
-        //div key 
-        //<div children
-            
+      return keys.map(function( key, i ){//took ou tthe i next to key            
        if ( !isNaN(parseInt( key ) ) ) {
 
-          //key = the same thing but w the animals inside it?
-          //console.log(key, "!isnan")
-          //if it's not a number turn it it's index
-          //var animal = {test:"test"}
           if (typeof node[ key ][ 0 ] === "undefined" ) {
             return ptr;
           }//if theres nothing there ignore
@@ -362,54 +352,28 @@ var Container = React.createClass({
           node[ key ].forEach (function (a){
             //console.log(a)
           })//doesn't work really
-          // // return animals.map (function())
-          // // console.log(key)
-          // var numberOfPlaces = []
+
          
-          // for (var i = 1; i <= node[ key ].length; ++i){
-          //   numberOfPlaces.push(i)
-          // }
-         
-          var indents = node[ key ].map(function (i, idx) {
+          var key = node[ key ].map(function (i, idx) {
             return (
-             <div className= "border">
+             <div className= "border x">
               {i.AnimalName}
              </div>
             );
           });
 
-          // var obj = {}
-
-          console.log()
-
-          //if (node[ key ].length !== 0){
-          // for (var i = )
-          //   var indents = (<div><div>{node[ key ].length}</div></div>)
-          // //}
-          
-
-          //var last = node[ key ].length;
-          //var middle = ((node[ key ].length)/2).toFixed();
-          //var first = 0;
-          // console.log(first,middle,last)
-          var test = (<div>{indents}</div>)
-
-          //var test = (<div>{node[ key ].length}</div>)
-          //   <div>{for (var i = 0; i <= node[ key ].length; ++i){
-                
-          // }
-          //var test = (<div>{key}<div>{node[ key ][0]}</div></div>)
-          //puts the 0 in each node so if there are mult node w a 0 were good
+         
+          //var key = (<div>{indents}</div>)
       }//if isnan
       
       else {
-        var test = key;
+        var key = key;
       }
         
 
       var props = {
           children: (<div>
-            {test}
+            {key}
 
           </div>),
           // key: key,
@@ -445,44 +409,6 @@ var Container = React.createClass({
   }
 });
 
-//
-// var Start = React.createClass ({
-//   getInitialState:function (){
-//     return {
-//       animal: null
-//     }
-//   },
-//   handleClick: function () {
-//    randomAnimalGenerator();
-//    console.log(tree)
-//    return(<div>test</div>)
-//   },
-//   render: function() {
-   
-//     return(
-//      <div> 
-//       hello
-//       <button onClick={this.handleClick} >guess</button>
-//       <Container data={tree} />
-//       </div>)
-//     }
-
-// });
-
-
-
-// // React.render(
-// //    <button />,
-// //    document.getElementById('content')
-//<Container data={tree} />
-// // );
 
 
 buildTree();
-
-
-
-
-
-
-////////////////////////
