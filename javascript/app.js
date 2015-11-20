@@ -135,7 +135,7 @@ function compare (item) {
       }
     }
   }
-  function firstCheck (parent) {
+  function firstCheck (parent, status) {
     var firstChild = parent[0];
     //console.log(firstChild)
     var holder = [];
@@ -143,95 +143,89 @@ function compare (item) {
     var length = firstChild.length;
     var child = getChildObj (parent)//if is phylum this is class(looks like {carninvoraect})
     firstChild[length]  = item;//add itembj to p array
-    // console.log(length, firstChild)
     var  childTag = getChildTag (item, parent)
-    //var isThere = null;
 
-    for (var x = 0; x < length; x++) {
-    if ( typeof firstChild[x] !== "undefined"){
-        //console.log(firstChild[x])//animals in parent(chordoata)
-        var catchildTag = getChildTag (item, parent)//next group the class
+  
+      for (var x = 0; x < length; x++) {
+          if ( typeof firstChild[x] !== "undefined"){
+            //console.log(firstChild)
+              var catchildTag = getChildTag (item, parent)//next group the class
+              
+              if (item[childTag].text === firstChild[x][childTag].text){//move matches from o to f 
+                //console.log(childTag ,item.AnimalName)
+                temp = firstChild[x]; 
+                holder.push(temp);
+                child[0] = holder;
+                //console.log(firstChild[x])
+                if (item.AnimalName === firstChild[x].AnimalName) {
+                  //console.log(item.AnimalName, firstChild[x].AnimalName)
+                }
+                delete firstChild[x];
+                //console.log(firstChild)
+                delete firstChild[length];  
         
-        if (item[childTag].text === firstChild[x][childTag].text && item.AnimalName !== firstChild[x].AnimalName ){//move matches from o to f 
-          //console.log(childTag)//if they share the next label(class)
-          
-          temp = firstChild[x]; //each animal that shares class
+              }//if match
+          }//if O[0][x] isnt undefined
+      }//for loop
 
-          holder.push(temp);
-          //holder.push(item);//ADDED TODAY
-          //console.log(temp)
-          child[0] = holder;
-          //console.log(firstChild[x])
-          delete firstChild[x];
-          delete firstChild[length];  
-  
-        }//if match
-      }//if O[0][x] isnt undefined
-    }//for loop
 
-  if (holder[((holder.length)-1)] === item) {
-    console.log("match", item.AnimalName)
-  }
-  else {
-    holder.push(item)
-  }
-  
-  //console.log(holder, child)
-  secondCheck (child)
+      holder.push(item)
+   
+   //  if (firstChild[length] === item && holder[0] !== item) {
+    //  console.log(holder, holder.length, firstChild[length])
+    //  delete firstChild[length]; 
 
-  //  //thirdCheck (child)
-  //  //console.log("firstchild", firstChild, "parent",parent,"child", child)//class
+    secondCheck (child)
+
   }
   // //first check is seeing if the classes are the name if theyr the same 
   
   function secondCheck (parent) {
     var firstO = parent[0];
     var child = getChildObj (parent);
-    //console.log("secondcheck", firstO, child)
-    if (typeof firstO !== "undefined" && typeof child !== "undefined") {  
-      var holder = [];
-      var temp = null;
-      var length = firstO.length;
-      var  childTag = getChildTag (item, parent)
-      var  parTag = getParentTag (item, parent)
-      //firstCheck()
-      console.log(holder)
-      for (var x = 0; x < length; x++){
-        if ( typeof firstO[x] !== "undefined"){
-          //console.log("firstO[x]", firstO[x])
+    console.log(parent[0], item.AnimalName, child)
+    if (typeof firstO !== "undefined" && typeof child !== "undefined" ) { 
+      console.log("secondcheck", item.AnimalName, firstO[0].AnimalName)
+        var holder = [];
+        var temp = null;
+        var length = firstO.length;
+        var  childTag = getChildTag (item, parent)
+        var  parTag = getParentTag (item, parent)
+        //firstCheck()
+        var holder2 = [];
 
-          // if (item[childTag].text === firstO[x][childTag].text && item.AnimalName !== firstO[x].AnimalName && holder.length !== 0 ){
-          //   //console.log( childTag, item[childTag].text , firstO[x][childTag].text, x)
-          //     //console.log(item.AnimalName, JSON.parse(JSON.stringify(firstO[x])));
-          //     temp = firstO[x]; 
-          //     console.log(temp)
-          //     holder.push(temp);
+        for (var x = 0; x < length; x++){
+          if ( typeof firstO[x] !== "undefined"){
+            //console.log("parent", parent, "firstO", firstO,"nexttag", childTag, "childObj", child)
+            if (item[childTag].text === firstO[x][childTag].text && item.AnimalName !== firstO[x].AnimalName) {
+              if (holder.length === 0){
+                console.log("HERE",firstO[x].AnimalName, item.AnimalName, childTag)
+                holder.push(item);
+                delete firstO[length-1];
+                // delete firstO[length];
+              }
+              else{
+                console.log( "AND here", temp, item, childTag)
+              }
 
-          //     child[0]= holder;
-              
-              
-            
-          //   //delete F[0][length];
-          // }//if match
-          
-          //console.log("parent", parent, "firstO", firstO,"nexttag", childTag, "childObj", child)
-          if (item[childTag].text === firstO[x][childTag].text && item.AnimalName !== firstO[x].AnimalName && holder.length !== 0 ){//move matches from o to f 
-              //console.log( childTag, item[childTag].text , firstO[x][childTag].text, x)
-              //console.log(item.AnimalName, JSON.parse(JSON.stringify(firstO[x])));
-              temp = firstO[x]; 
-              console.log(temp)
-              holder.push(temp);
+            }
+            if (item[childTag].text === firstO[x][childTag].text && item.AnimalName !== firstO[x].AnimalName && holder.length !== 0 ){//move matches from o to f 
+                //console.log( childTag, item[childTag].text , firstO[x][childTag].text, x)
+                //console.log(item.AnimalName, JSON.parse(JSON.stringify(firstO[x])));
+                temp = firstO[x]; 
+                
+                holder.push(temp);
 
-              child[0]= holder;
+                child[0]= holder;
+                
+                delete firstO[x];
               
-              delete firstO[x];
-            
-            //delete F[0][length];
-          }//if match
+              //delete F[0][length];
+            }//if match
           }//if O[0][x] isnt undefined
-          
+            
         }//for loop           
-      }//if F[0] isnt undefined
+    }//if F[0] isnt undefined
   }//second check
   //setStatus (O);
   function setStatus (obj) {
@@ -252,38 +246,24 @@ function compare (item) {
   if (setStatus (F) === 1) {
     firstCheck (F)
   }
-    else {
-      //console.log( 'O is ', O, setStatus( O ) )
-      if (setStatus (O) === 1) {
-        firstCheck (O)
-      }
-      //
-      else {
-        //console.log( 'C is ', C, setStatus( C ) )
-        if (setStatus (C) === 1) {
-          firstCheck (C)
-          }
-        else {
-          if (setStatus (P) === 1) {
-            console.log(P[0])
-            firstCheck (P)
-            firstCheck (C)
-          } 
-          else {
-
-            if (setStatus (K) === 1) {
-              firstCheck (K)
-            } 
-            else {    
-            K[0] = [item];
-            } 
-            
-          }
-        }
-
-
-    }
+  else if (setStatus (O) === 1) {
+    firstCheck (O)
   }
+  else if (setStatus (C) === 1) {
+    firstCheck (C)
+  }
+  else if (setStatus (P) === 1) {
+    firstCheck (P)
+    //firstCheck (C, 2)
+  } 
+  else if (setStatus (K) === 1) {
+    firstCheck (K)
+    } 
+  else {    
+    K[0] = [item];
+  } 
+            
+
     //check O
 
 }//compare
