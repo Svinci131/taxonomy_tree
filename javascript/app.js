@@ -286,6 +286,7 @@ var Container = React.createClass({
     return {
       // data: this.props.data,
       visible: true,
+      clicked: {},
       foo: Date.now()
     }
   },
@@ -298,10 +299,29 @@ var Container = React.createClass({
       foo: Math.random()
     });
   },
-   componentDidUpdate: function() {
-    // alert("componentDidUpdate")
-   },
+  toggle: function(event){
+  //     this.setState({visible: !this.state.visible});
+  // }
+    
+    // if (this.state.visible === true) {
+    //   return (<span className="glyphicon glyphicon-triangle-bottom"></span>)
+    // }
+    // else {
+    //   return(<span className="glyphicon glyphicon-triangle-left"></span>)
+    // } 
    //call the function walk that takes the props(the state obj) and a div w animalia in it
+  },
+  setVisibility: function (event) {
+     
+    this.setState({visible: !this.state.visible}, function(){
+      console.log(this.state.visible)
+
+    });
+    this.state.clicked[event.target.id]=this.state.visible;
+
+
+  },
+
   renderTree: function( data ) {
     // console.log('here!', this.state, this.state.data.Animalia)
     return this._walk( data, (<div><div>Animalia</div><div>Animalia</div></div>) );
@@ -326,7 +346,7 @@ var Container = React.createClass({
             console.log(key[0],idx)
            // console.log(key, node[ key ], node)
             return (
-             <div id={"key"+i.AnimalName} className= "border">
+             <div id={"key"+i.AnimalName} className= "col-md-3 border">
               {i.AnimalName}
              </div>
             );
@@ -339,9 +359,11 @@ var Container = React.createClass({
         }
 
         var props = {
-          children: (<div id={"props" + key}>
-            {key}
-          </div>),
+          children: (
+          
+            <div id={"props" + key}>
+             {key}
+            </div>),
           key: key,
           className: 'border foo'
         }
@@ -350,10 +372,27 @@ var Container = React.createClass({
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
 
-        return <div id= {"ptr" +key} className="border">
-          <button>{ (key !== "undefined") ? key : "" }</button>
+        // if (!this.state.visible) {
+        //    className = "glyphicon glyphicon-triangle-left";
+        // }   
+        
+        // else {
+        //   className = "glyphicon glyphicon-triangle-bottom";
+        // }
+        if (this.state.clicked[key] === true){
+          className = "glyphicon glyphicon-triangle-left";
+
+        }
+        else if (typeof this.state.clicked[key] === "undefined" || this.state.clicked[key] === false ){
+          className = "glyphicon glyphicon-triangle-bottom";
+        }
+
+        return <div id= {"ptr" +key} className="col-md-1  border">
+          <span  onClick={this.setVisibility}>
+            { (key !== "undefined") ? key : "" }
+            <span className = {className} id={key}></span>
+          </span>
           {this._walk( node[ key ], ptr )}
-          
         </div>;
       }.bind(this))
     }
@@ -364,10 +403,15 @@ var Container = React.createClass({
   render: function() {
     // console.log( this.state.foo );
     // console.log('here')
-    return (<div data-foo={this.state.foo}>
-       <button onClick={this.handleClick}>guess</button>
-        <div>{this.renderTree( tree )}</div>
-      </div>);
+    return (
+          <div class="container-fluid">
+            <button onClick={this.handleClick}>guess</button>
+              <div class="row">
+                <div data-foo={this.state.foo}>
+                  <div>{this.renderTree( tree )}</div>
+                </div>
+            </div>
+          </div>);
   }
 });
 
