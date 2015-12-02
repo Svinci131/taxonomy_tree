@@ -285,6 +285,7 @@ var Container = React.createClass({
   getInitialState: function() {
     return {
       // data: this.props.data,
+      visible: true,
       foo: Date.now()
     }
   },
@@ -296,9 +297,6 @@ var Container = React.createClass({
     this.setState({
       foo: Math.random()
     });
-    // console.log(this.props.data)
-    
-    //setState(data, callback) 
   },
    componentDidUpdate: function() {
     // alert("componentDidUpdate")
@@ -316,32 +314,19 @@ var Container = React.createClass({
     }
     var keys = Object.keys( node );
     if ( keys.length !== 0 ) {
-      //if it has more than one key 
-      // if ( keys.length === 0 && keys[ 0 ] === "undefined" ) {
-      //   return (ptr);
-      // }
-      //for each key grab each 
-
       return keys.map(function( key, i ){//took ou tthe i next to key            
         if ( !isNaN(parseInt( key ) ) ) {
           if (key === "0"){
             console.log(key, ptr.props.children.props.children)
           }
-
           if (typeof node[ key ][ 0 ] === "undefined" ) {
-
-            //console.log (key, ptr.props.children.props.children)
             return null;
-            //var key = key
-          }//if theres nothing there ignore
-          //console.info( key, node[ key ], node )
-          //console.log(node[ key ])//array of obj
-
+          }
           var key = node[ 0 ].map(function (i, idx) {
             console.log(key[0],idx)
            // console.log(key, node[ key ], node)
             return (
-             <div id={"key"+i.AnimalName} className= "border x">
+             <div id={"key"+i.AnimalName} className= "border">
               {i.AnimalName}
              </div>
             );
@@ -350,16 +335,8 @@ var Container = React.createClass({
         }//if isnan
       
         else {
-          //console.log(key)
-          if (typeof key !== "undefined" ) {
-            console.log("props", key)
-          }
-          
           var key = key;
-          
-          
         }
-        
 
         var props = {
           children: (<div id={"props" + key}>
@@ -370,20 +347,18 @@ var Container = React.createClass({
         }
      
         var foo = (<div {...props} />)
-        //var foo = (<div> {props} </div>);
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
 
         return <div id= {"ptr" +key} className="border">
-          { (key !== "undefined") ? key : "" }
+          <button>{ (key !== "undefined") ? key : "" }</button>
           {this._walk( node[ key ], ptr )}
+          
         </div>;
       }.bind(this))
     }
     else {
-      //if (typeof ptr.props.children.props !== "undefined"){
         return ptr;
-      //}
     }
   },
   render: function() {
