@@ -183,9 +183,9 @@ function compare (item) {
   function secondCheck (parent) {
     var firstO = parent[0];
     var child = getChildObj (parent);
-    console.log(parent[0], item.AnimalName, child)
+    //console.log(parent[0], item.AnimalName, child)
     if (typeof firstO !== "undefined" && typeof child !== "undefined" ) { 
-      console.log("secondcheck", item.AnimalName, firstO[0].AnimalName)
+      //console.log("secondcheck", item.AnimalName, firstO[0].AnimalName)
         var holder = [];
         var temp = null;
         var length = firstO.length;
@@ -199,13 +199,13 @@ function compare (item) {
             //console.log("parent", parent, "firstO", firstO,"nexttag", childTag, "childObj", child)
             if (item[childTag].text === firstO[x][childTag].text && item.AnimalName !== firstO[x].AnimalName) {
               if (holder.length === 0){
-                console.log("HERE",firstO[x].AnimalName, item.AnimalName, childTag)
+                //console.log("HERE",firstO[x].AnimalName, item.AnimalName, childTag)
                 holder.push(item);
                 delete firstO[length-1];
                 // delete firstO[length];
               }
               else{
-                console.log( "AND here", temp, item, childTag)
+                //console.log( "AND here", temp, item, childTag)
               }
 
             }
@@ -273,7 +273,7 @@ function randomAnimalGenerator  () {
     var randomAnimal = animalList[ randomIndex ] ;
     // remove from animalList so we don't get dupes!
     animalList.splice( randomIndex, 1 );
-    console.log(randomAnimal.AnimalName);
+   // console.log(randomAnimal.AnimalName);
     compare(randomAnimal)
 }//grabs a random animal
 //removes it from the data obj
@@ -292,7 +292,7 @@ var Container = React.createClass({
   handleClick: function () {
     // this.props.events.emit('foo');
     randomAnimalGenerator();
-    console.log(tree)
+    //console.log(tree)
     this.setState({
       foo: Math.random()
     });
@@ -310,73 +310,80 @@ var Container = React.createClass({
   },//returns divs with obj keys
   _walk: function( node, ptr ) {
     if ( typeof node === "undefined" ) {
+      // var parent = ptr.props
+      // console.log(ptr.props.children, ptr.props.children.props.children, node)
       return ptr;
     }
     var keys = Object.keys( node );
     if ( keys.length !== 0 ) {
       //if it has more than one key 
-      if ( keys.length === 0 && keys[ 0 ] === "undefined" ) {
-        return (ptr);
-      }
+      // if ( keys.length === 0 && keys[ 0 ] === "undefined" ) {
+      //   return (ptr);
+      // }
       //for each key grab each 
 
       return keys.map(function( key, i ){//took ou tthe i next to key            
-       if ( !isNaN(parseInt( key ) ) ) {
+        if ( !isNaN(parseInt( key ) ) ) {
+          if (key === "0"){
+            console.log(key, ptr.props.children.props.children)
+          }
 
           if (typeof node[ key ][ 0 ] === "undefined" ) {
-            return ptr;
+
+            //console.log (key, ptr.props.children.props.children)
+            return null;
+            //var key = key
           }//if theres nothing there ignore
           //console.info( key, node[ key ], node )
           //console.log(node[ key ])//array of obj
 
-          node[ key ].forEach (function (a){
-            //console.log(a)
-          })//doesn't work really
-
-         
-          var key = node[ key ].map(function (i, idx) {
+          var key = node[ 0 ].map(function (i, idx) {
+            console.log(key[0],idx)
+           // console.log(key, node[ key ], node)
             return (
-             <div className= "border x">
+             <div id={"key"+i.AnimalName} className= "border x">
               {i.AnimalName}
              </div>
             );
           });
-
-         
           //var key = (<div>{indents}</div>)
-      }//if isnan
+        }//if isnan
       
-      else {
-        var key = key;
-      }
+        else {
+          //console.log(key)
+          if (typeof key !== "undefined" ) {
+            console.log("props", key)
+          }
+          
+          var key = key;
+          
+          
+        }
         
 
-      var props = {
-          children: (<div>
+        var props = {
+          children: (<div id={"props" + key}>
             {key}
-
           </div>),
-          // key: key,
-          className: 'border'
+          key: key,
+          className: 'border foo'
         }
-        if ( typeof key === "undefined" || key === "undefined" ) {
-          // console.log('######################');
-          // console.log( key, i, ptr )
-          // console.log('#######################')
-        }
-        //console.log( props, ptr, key );
-        var foo = (<div {...props} />);
+     
+        var foo = (<div {...props} />)
+        //var foo = (<div> {props} </div>);
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
 
-        return <div className="border">
+        return <div id= {"ptr" +key} className="border">
           { (key !== "undefined") ? key : "" }
           {this._walk( node[ key ], ptr )}
         </div>;
       }.bind(this))
     }
     else {
-      return ptr;
+      //if (typeof ptr.props.children.props !== "undefined"){
+        return ptr;
+      //}
     }
   },
   render: function() {
