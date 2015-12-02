@@ -29,7 +29,9 @@
 	margin-left: 1px;
 }
 
-
+.title{
+	clear:left;
+}
 .border.foo {
 	display: none;
 }

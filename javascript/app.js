@@ -328,8 +328,6 @@ var Container = React.createClass({
   },//returns divs with obj keys
   _walk: function( node, ptr ) {
     if ( typeof node === "undefined" ) {
-      // var parent = ptr.props
-      // console.log(ptr.props.children, ptr.props.children.props.children, node)
       return ptr;
     }
     var keys = Object.keys( node );
@@ -360,7 +358,6 @@ var Container = React.createClass({
 
         var props = {
           children: (
-          
             <div id={"props" + key}>
              {key}
             </div>),
@@ -388,10 +385,10 @@ var Container = React.createClass({
         }
 
         return <div id= {"ptr" +key} className="col-md-1  border">
-          <span  onClick={this.setVisibility}>
+          <div className="title" onClick={this.setVisibility}>
             { (key !== "undefined") ? key : "" }
             <span className = {className} id={key}></span>
-          </span>
+          </div>
           {this._walk( node[ key ], ptr )}
         </div>;
       }.bind(this))
