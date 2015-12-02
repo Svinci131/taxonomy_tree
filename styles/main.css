@@ -19,8 +19,13 @@
 	display:none;
 }
 
-.border {
+.block{
 	display: inline-block;
+
+	font-size: 10pt;
+	vertical-align: top;
+}
+.border {
 	border-style: solid;
 	border-width: 1px;
 	border-color: black;
@@ -30,7 +35,9 @@
 }
 
 .title{
+	text-align: center;
 	clear:left;
+	margin-bottom: 10pt;
 }
 .border.foo {
 	display: none;

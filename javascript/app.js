@@ -344,9 +344,9 @@ var Container = React.createClass({
             console.log(key[0],idx)
            // console.log(key, node[ key ], node)
             return (
-             <div id={"key"+i.AnimalName} className= "col-md-3 border">
+             <span id={"key"+i.AnimalName} className= "border">
               {i.AnimalName}
-             </div>
+             </span>
             );
           });
           //var key = (<div>{indents}</div>)
@@ -359,23 +359,17 @@ var Container = React.createClass({
         var props = {
           children: (
             <div id={"props" + key}>
-             {key}
+             {key} 
             </div>),
           key: key,
           className: 'border foo'
         }
      
         var foo = (<div {...props} />)
+
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
 
-        // if (!this.state.visible) {
-        //    className = "glyphicon glyphicon-triangle-left";
-        // }   
-        
-        // else {
-        //   className = "glyphicon glyphicon-triangle-bottom";
-        // }
         if (this.state.clicked[key] === true){
           className = "glyphicon glyphicon-triangle-left";
 
@@ -383,8 +377,24 @@ var Container = React.createClass({
         else if (typeof this.state.clicked[key] === "undefined" || this.state.clicked[key] === false ){
           className = "glyphicon glyphicon-triangle-bottom";
         }
+        
 
-        return <div id= {"ptr" +key} className="col-md-1  border">
+       
+        // style = (Math.floor(12/(keys.length)))
+        // col = "col-md-"+style;
+         
+        // console.log(col)
+        if (keys.length <= 3){
+          var style = {width: ""+(100/(keys.length))+"%"};
+        }
+        else {
+          var style = {width: ""+(100/((keys.length)/3))+"%"};
+          console.log(keys.length, style)
+        }
+
+       
+        // console.log(key, ptr.props.children.props)
+        return <div id= {"ptr" +key} style={style} className= "test block border">
           <div className="title" onClick={this.setVisibility}>
             { (key !== "undefined") ? key : "" }
             <span className = {className} id={key}></span>
