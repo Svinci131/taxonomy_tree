@@ -22,6 +22,17 @@
 .animal {
 	color: red;
 }
+
+.blue{
+	color: blue;
+}
+.red {
+	color:red;
+}
+.bar {
+	display:none;
+}
+
 .block{
 	display: inline-block;
 
