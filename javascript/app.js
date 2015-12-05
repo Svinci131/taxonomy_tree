@@ -286,8 +286,8 @@ var Container = React.createClass({
     return {
       // data: this.props.data,
       visible: true,
-      closed: false, 
       clicked: {},
+      open:{},
       animalsAreThere: false,
       foo: Date.now()
     }
@@ -305,14 +305,22 @@ var Container = React.createClass({
       foo: Math.random()
     });
   },  
-  setVisibility: function (event) {
-     
+  toggle:function (el) {
+    console.log(el)
+  },
+  setVisibility: function (event) {   
     this.setState({visible: !this.state.visible}, function(){
       console.log(this.state.visible)
 
     });
     this.state.clicked[event.target.id]=this.state.visible;
-    // console.log(event.target.children())
+    this.state.clicked[0]=event.target.id;
+    //start with event target 
+
+    //this.state.open[event.target.id]=this.state.visible;
+    //this.state.open[event.target.parentNode] = this.state.visible
+    // this.state.open[event.getParent] = this.state.visible
+    console.log(this.toggle(event.target.id))
     this.isClosed();
   },
   isClosed: function () { 
@@ -352,7 +360,7 @@ var Container = React.createClass({
           });
           //var key = (<div>{indents}</div>)
         }//if isnan
-      
+
         else {
           var key = key;
         }
@@ -369,31 +377,33 @@ var Container = React.createClass({
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
         var closed = {};
+        //DETERMIN IF CLICKED
 
         if (this.state.clicked[key] === true){ //if the key is clicked 
           className = "glyphicon glyphicon-triangle-left";
-          closed[key] = true;
-          //this.setState({closed: true}, function(){
-            //console.log("HERE", this.state.closed)
-        
-
+          closed[0] = key;
         }
 
         else if (typeof this.state.clicked[key] === "undefined" || this.state.clicked[key] === false ){
           className = "glyphicon glyphicon-triangle-bottom";
           //console.log("HERE", this.state.closed)
         }
-        console.log("HERE", this.state.closed)
-
+        ///DETERMIN IF CLICKED
         //for each key 
-        //if something is closed 
-        if (this.state.closed === true) {
-          if (closed[key] !== true){//see that key is the key thats closed 
-            var displayClass="hide"
-
-          }
+        //if anything is clicked 
+        //see if the key is clicked 
+        //if not see if it key belongs inside the closed key node 
+        if (this.state.visible === false) {
+          var start = this.state.clicked[0]
+           
+          if (typeof node[key][start] !== "undefined") {
+            console.log(key)
+            //displayClass = "hide"
+          } 
         }
+        
 
+        //layout
         var length = keys.length;
 
         if (typeof key !== "string"){//if its an animal obj//it's 100% width 
@@ -419,8 +429,9 @@ var Container = React.createClass({
             <span className = {className} id={key}></span>
           </div>
           {this._walk( node[ key ], ptr )}
-        </div>;
-      }.bind(this))
+          </div>;
+        }.bind(this))
+      
     }
     else {
         return ptr;
