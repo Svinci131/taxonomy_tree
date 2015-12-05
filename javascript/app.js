@@ -383,16 +383,13 @@ var Container = React.createClass({
           className = "glyphicon glyphicon-triangle-bottom";
         }
         
-
+        //controls layout 
         var length = keys.length;
 
 
         if (typeof key !== "string"){//if its an animal obj//it's 100% width 
           var style = {width: "100%"};
           var animalsAreThere = true
-          // if (keys.length > 1){
-          //   var length = keys.length-1;
-          // }
         }//else if 
 
         else if (keys.length <= 3){//if there are two three cat it's 50 or 25%
@@ -405,7 +402,7 @@ var Container = React.createClass({
           console.log(keys.length, style)
         }
 
-       
+       ////////LAYOUTN
         // console.log(key, ptr.props.children.props)
         return <div id= {"ptr" +key} style={style} className= "test block border">
           <div className="title" onClick={this.setVisibility}>
