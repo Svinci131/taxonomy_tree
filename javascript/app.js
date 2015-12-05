@@ -287,6 +287,7 @@ var Container = React.createClass({
       // data: this.props.data,
       visible: true,
       clicked: {},
+      animalsAreThere: false,
       foo: Date.now()
     }
   },
@@ -294,6 +295,10 @@ var Container = React.createClass({
   handleClick: function () {
     // this.props.events.emit('foo');
     randomAnimalGenerator();
+     this.setState({
+      animalsAreThere: true 
+    });
+
     //console.log(tree)
     this.setState({
       foo: Math.random()
@@ -344,9 +349,9 @@ var Container = React.createClass({
             console.log(key[0],idx)
            // console.log(key, node[ key ], node)
             return (
-             <span id={"key"+i.AnimalName} className= "border">
+             <div id={"key"+i.AnimalName} className= "animal border">
               {i.AnimalName}
-             </span>
+             </div>
             );
           });
           //var key = (<div>{indents}</div>)
@@ -379,16 +384,24 @@ var Container = React.createClass({
         }
         
 
-       
-        // style = (Math.floor(12/(keys.length)))
-        // col = "col-md-"+style;
-         
-        // console.log(col)
-        if (keys.length <= 3){
-          var style = {width: ""+(100/(keys.length))+"%"};
+        var length = keys.length;
+
+
+        if (typeof key !== "string"){//if its an animal obj//it's 100% width 
+          var style = {width: "100%"};
+          var animalsAreThere = true
+          // if (keys.length > 1){
+          //   var length = keys.length-1;
+          // }
+        }//else if 
+
+        else if (keys.length <= 3){//if there are two three cat it's 50 or 25%
+          if (this.state.animalsAreThere === true)
+          var length = keys.length - 1;
+          var style = {width: ""+(100/(length))+"%"};
         }
-        else {
-          var style = {width: ""+(100/((keys.length)/3))+"%"};
+        else {//if it's more they are bigger and go to multiple lines
+          var style = {width: ""+(100/((length)/3))+"%"};
           console.log(keys.length, style)
         }
 

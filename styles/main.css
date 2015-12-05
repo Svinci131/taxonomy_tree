@@ -19,6 +19,9 @@
 	display:none;
 }
 
+.animal {
+	color: red;
+}
 .block{
 	display: inline-block;
 
