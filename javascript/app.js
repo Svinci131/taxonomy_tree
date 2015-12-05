@@ -394,11 +394,12 @@ var Container = React.createClass({
         //see if the key is clicked 
         //if not see if it key belongs inside the closed key node 
         if (this.state.visible === false) {
-          var start = this.state.clicked[0]
-           
-          if (typeof node[key][start] !== "undefined") {
+          var start = this.state.clicked[0];
+          var latest = null;
+
+          if (typeof node[key][start] === "undefined" && key !== start) {
             console.log(key)
-            //displayClass = "hide"
+            displayClass = "hide"
           } 
         }
         
