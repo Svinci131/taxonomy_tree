@@ -287,9 +287,10 @@ var Container = React.createClass({
       // data: this.props.data,
       visible: true,
       clicked: {},
-      open:{},
+      open:null,
       animalsAreThere: false,
-      foo: Date.now()
+      foo: Date.now(),
+      isInitial: true
     }
   },
   //foo = the tree after the render tree function  
@@ -308,20 +309,39 @@ var Container = React.createClass({
   toggle:function (el) {
     console.log(el)
   },
-  setVisibility: function (event) {   
-    this.setState({visible: !this.state.visible}, function(){
-      console.log(this.state.visible)
+  setVisibility: function (id, event) { 
+    var opens = this.state.open;
 
+    if ( opens === null ) {
+      opens = {};
+    }
+
+    if ( typeof opens[ id ] === "undefined" ) {
+      opens[id] = false;
+    }
+    else {
+      opens[ id ] = !opens[ id ];  
+    }
+    
+    this.setState({
+      open: opens,
+      isInitial: false
     });
-    this.state.clicked[event.target.id]=this.state.visible;
-    this.state.clicked[0]=event.target.id;
-    //start with event target 
 
-    //this.state.open[event.target.id]=this.state.visible;
-    //this.state.open[event.target.parentNode] = this.state.visible
-    // this.state.open[event.getParent] = this.state.visible
-    console.log(this.toggle(event.target.id))
-    this.isClosed();
+    console.log( this.state );
+    // this.setState({visible: !this.state.visible}, function(){
+    //   console.log(this.state.visible)
+
+    // });
+    // this.state.clicked[event.target.id]=this.state.visible;
+    // this.state.open[0]=event.target.id;
+    // //start with event target 
+
+    // //this.state.open[event.target.id]=this.state.visible;
+    // //this.state.open[event.target.parentNode] = this.state.visible
+    // // this.state.open[event.getParent] = this.state.visible
+    // console.log(this.toggle(event.target.id))
+    // this.isClosed();
   },
   isClosed: function () { 
     this.setState({closed: !this.state.closed}, function(){
@@ -388,22 +408,6 @@ var Container = React.createClass({
           className = "glyphicon glyphicon-triangle-bottom";
           //console.log("HERE", this.state.closed)
         }
-        ///DETERMIN IF CLICKED
-        //for each key 
-        //if anything is clicked 
-        //see if the key is clicked 
-        //if not see if it key belongs inside the closed key node 
-        if (this.state.visible === false) {
-          var start = this.state.clicked[0];
-          var latest = null;
-
-          if (typeof node[key][start] === "undefined" && key !== start) {
-            console.log(key)
-            displayClass = "hide"
-          } 
-        }
-        
-
         //layout
         var length = keys.length;
 
@@ -421,17 +425,51 @@ var Container = React.createClass({
           var style = {width: ""+(100/((length)/3))+"%"};
           //console.log(keys.length, style)
         }
+        ////////LAYOUTN
+        ///DETERMIN IF CLICKED
+        //for each key 
+        //if anything is clicked 
+        //see if the key is clicked 
+        //if not see if it key belongs inside the closed key node 
+// if (this.state.visible === false) {
+//   var start = this.state.open[0];
+//   var length = Object.keys(this.state.open).length-1;
 
-       ////////LAYOUTN
-        // console.log(key, ptr.props.children.props)
-        return <div id= {"ptr" +key} style={style} className= "test block border">
-          <div className={"title " +displayClass} onClick={this.setVisibility}>
-            { (key !== "undefined") ? key : "" }
-            <span className = {className} id={key}></span>
-          </div>
-          {this._walk( node[ key ], ptr )}
-          </div>;
-        }.bind(this))
+//   if (typeof node[key][start] === "undefined" && start !== key) {
+//     //console.log(length, this.state.open)
+//     // this.state.clicked[key]=this.state.clicked[start];
+//     // this.state.open[length+1]=key;
+//     displayClass = "hide"
+//   } 
+//   // console.log(node[key][this.state.open[length]], this.state.open[length]
+// }
+
+        // if (key === "Mammalia") {
+        //   return null;
+        // }
+
+        // else {
+          
+          var vis = {};
+          // if ( this.state.isInitial === false && typeof this.state.open[ "ptr"+key ] === "undefined" ) {
+          //   console.log('here')
+          //   vis.display = 'none';
+          // }
+          // else 
+          if ( this.state.open && this.state.open[ "ptr" +key ] === false ) {
+            vis.display = "none";
+          }
+
+          return <div id= {"ptr" +key} style={style} className= "test block border">
+            <div className={"title " +displayClass} onClick={this.setVisibility.bind(this, "ptr" +key)}>
+              { (key !== "undefined") ? key : "" }
+              <span className = {className} id={key}></span>
+            </div>
+            <div style={vis}>
+            {this._walk( node[ key ], ptr )}
+            </div>
+            </div>;
+          }.bind(this));
       
     }
     else {
