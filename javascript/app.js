@@ -288,9 +288,8 @@ var Container = React.createClass({
       visible: true,
       clicked: {},
       open:null,
-      animalsAreThere: false,
       foo: Date.now(),
-      isInitial: true
+      animalsAreThere: false
     }
   },
   //foo = the tree after the render tree function  
@@ -325,31 +324,14 @@ var Container = React.createClass({
     
     this.setState({
       open: opens,
-      isInitial: false
+      // isInitial: false
     });
-
-    console.log( this.state );
-    // this.setState({visible: !this.state.visible}, function(){
-    //   console.log(this.state.visible)
-
-    // });
-    // this.state.clicked[event.target.id]=this.state.visible;
-    // this.state.open[0]=event.target.id;
-    // //start with event target 
-
-    // //this.state.open[event.target.id]=this.state.visible;
-    // //this.state.open[event.target.parentNode] = this.state.visible
-    // // this.state.open[event.getParent] = this.state.visible
-    // console.log(this.toggle(event.target.id))
-    // this.isClosed();
-  },
-  isClosed: function () { 
-    this.setState({closed: !this.state.closed}, function(){
-      console.log("HERE", this.state.closed)
-
+    // console.log( this.state );
+    this.setState({visible: !this.state.visible}, function(){
+      //console.log(this.state.visible)
     });
+    this.state.clicked[event.target.id]=this.state.visible;
   },
-
   renderTree: function( data ) {
     // console.log('here!', this.state, this.state.data.Animalia)
     return this._walk( data, (<div><div>Animalia</div><div>Animalia</div></div>) );
@@ -358,7 +340,7 @@ var Container = React.createClass({
     if ( typeof node === "undefined" ) {
       return ptr;
     }
-    var displayClass="red"
+
     var keys = Object.keys( node );
     if ( keys.length !== 0 ) {
       return keys.map(function( key, i ){//took ou tthe i next to key            
@@ -378,7 +360,6 @@ var Container = React.createClass({
              </div>
             );
           });
-          //var key = (<div>{indents}</div>)
         }//if isnan
 
         else {
@@ -396,24 +377,31 @@ var Container = React.createClass({
         var foo = (<div {...props} />)
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
-        var closed = {};
-        //DETERMIN IF CLICKED
+      
+             //DETERMIN IF CLICKED
 
         if (this.state.clicked[key] === true){ //if the key is clicked 
-          className = "glyphicon glyphicon-triangle-left";
-          closed[0] = key;
+          arrow = "glyphicon glyphicon-triangle-left";
         }
 
         else if (typeof this.state.clicked[key] === "undefined" || this.state.clicked[key] === false ){
-          className = "glyphicon glyphicon-triangle-bottom";
+          arrow = "glyphicon glyphicon-triangle-bottom";
           //console.log("HERE", this.state.closed)
         }
-        //layout
+
+
+        var vis = {};
+        if ( this.state.open && this.state.open[ "ptr" +key ] === false ) {
+            vis.display = "none";
+        }
+
+          //layout
         var length = keys.length;
 
         if (typeof key !== "string"){//if its an animal obj//it's 100% width 
           var style = {width: "100%"};
           var animalsAreThere = true
+          arrow ="hide"
         }//else if 
 
         else if (keys.length <= 3){//if there are two three cat it's 50 or 25%
@@ -426,50 +414,17 @@ var Container = React.createClass({
           //console.log(keys.length, style)
         }
         ////////LAYOUTN
-        ///DETERMIN IF CLICKED
-        //for each key 
-        //if anything is clicked 
-        //see if the key is clicked 
-        //if not see if it key belongs inside the closed key node 
-// if (this.state.visible === false) {
-//   var start = this.state.open[0];
-//   var length = Object.keys(this.state.open).length-1;
-
-//   if (typeof node[key][start] === "undefined" && start !== key) {
-//     //console.log(length, this.state.open)
-//     // this.state.clicked[key]=this.state.clicked[start];
-//     // this.state.open[length+1]=key;
-//     displayClass = "hide"
-//   } 
-//   // console.log(node[key][this.state.open[length]], this.state.open[length]
-// }
-
-        // if (key === "Mammalia") {
-        //   return null;
-        // }
-
-        // else {
-          
-          var vis = {};
-          // if ( this.state.isInitial === false && typeof this.state.open[ "ptr"+key ] === "undefined" ) {
-          //   console.log('here')
-          //   vis.display = 'none';
-          // }
-          // else 
-          if ( this.state.open && this.state.open[ "ptr" +key ] === false ) {
-            vis.display = "none";
-          }
-
-          return <div id= {"ptr" +key} style={style} className= "test block border">
-            <div className={"title " +displayClass} onClick={this.setVisibility.bind(this, "ptr" +key)}>
+        
+        return <div id= {"ptr" +key} style={style} className= "test block border">
+            <div className={"title "} onClick={this.setVisibility.bind(this, "ptr" +key)}>
               { (key !== "undefined") ? key : "" }
-              <span className = {className} id={key}></span>
+              <span className = {arrow} id={key}></span>
             </div>
             <div style={vis}>
             {this._walk( node[ key ], ptr )}
             </div>
             </div>;
-          }.bind(this));
+        }.bind(this));
       
     }
     else {
@@ -477,8 +432,6 @@ var Container = React.createClass({
     }
   },
   render: function() {
-    // console.log( this.state.foo );
-    // console.log('here')
     return (
           <div class="container-fluid">
             <button onClick={this.handleClick}>guess</button>
