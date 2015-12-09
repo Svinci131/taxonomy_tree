@@ -352,10 +352,11 @@ var Container = React.createClass({
             return null;
           }
           var key = node[ 0 ].map(function (i, idx) {
-            console.log(key[0],idx)
-           // console.log(key, node[ key ], node)
+            // console.log(key[0],idx)
+           console.log(i.Image.src, i.AnimalName)
             return (
-             <div id={"key"+i.AnimalName} className= "animal border">
+             <div id={"key"+i.AnimalName} className= "animal">
+          
               {i.AnimalName}
              </div>
             );
@@ -414,7 +415,7 @@ var Container = React.createClass({
           //console.log(keys.length, style)
         }
         ////////LAYOUTN
-        
+
         return <div id= {"ptr" +key} style={style} className= "test block border">
             <div className={"title "} onClick={this.setVisibility.bind(this, "ptr" +key)}>
               { (key !== "undefined") ? key : "" }

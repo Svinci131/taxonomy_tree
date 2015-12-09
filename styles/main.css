@@ -1,3 +1,27 @@
+body {
+	background-color: rgb(65, 107, 111);
+}
+
+.title {
+	background-color: rgb(251, 239, 202);
+	margin:3%;
+	padding:1%;
+	font-size: 18px;
+}
+
+.animal {
+	background-color: black;
+/*	background-size: cover;*/
+	color:white;
+	width:20%;
+	height:20%;
+	display:inline-block;
+	margin: 1%;
+}
+.animal_img {
+	width:10px;
+	height:10px;
+}
 /* CURRENTLY IN: styles/main.css */
 .thumbnail {
 	width:200px;
@@ -19,19 +43,9 @@
 	display:none;
 }
 
-.animal {
-	color: red;
-}
 
-.blue{
-	color: blue;
-}
-.red {
-	color:red;
-}
-.bar {
-	display:none;
-}
+
+
 
 .block{
 	display: inline-block;
@@ -39,11 +53,7 @@
 	font-size: 10pt;
 	vertical-align: top;
 }
-.border {
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
-}
+
 .caret{
 	margin-left: 1px;
 }
