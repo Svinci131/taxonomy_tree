@@ -405,7 +405,7 @@ var Container = React.createClass({
             //console.log(this.state.animal, )
 
             if (newAnimal === i.AnimalName) {
-              var animalStatus = "animal red"
+              var animalStatus = "animal invisible"
             }
             else {
               var animalStatus = "animal"
@@ -436,12 +436,6 @@ var Container = React.createClass({
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
         
-        /// I need a way of saying at this level change them to x color
-        //get the div 
-        // all the children in the 
-
-
-
         //DETERMIN IF CLICKED
 
         if (this.state.clicked[key] === true){ //if the key is clicked 
@@ -479,7 +473,7 @@ var Container = React.createClass({
     return (
           <div className="container-fluid">
             <div className="row">
-              <div className="col-md-4 guess">
+              <div className="col-md-2 guess">
                 <button onClick={this.handleClick}>another animal</button>
                 <div>{this.state.animal}</div>
                 <div className="score">Wrong:{this.state.wrongGuesses}</div>
