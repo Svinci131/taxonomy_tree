@@ -290,9 +290,11 @@ var Container = React.createClass({
       open:null,
       foo: Date.now(),
       animal: null,
-      animalsAreThere: false
+      animalsAreThere: false,
+      rightGuesses: 0,
+      wrongGuesses: 0
     }
-  },
+  }, 
   //foo = the tree after the render tree function  
   handleClick: function () {
     //when they press guess it add the animal but doesn't show it 
@@ -340,28 +342,44 @@ var Container = React.createClass({
     this.state.clicked[event.target.id]=this.state.visible;
   },
   guess:function (id){
+    var oldScore_right = this.state.rightGuesses
+    var oldScore_wrong = this.state.wrongGuesses
     var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
     //console.log(animalHolder.querySelector("#key"+this.state.animal))
 
     NodeList.prototype.forEach = Array.prototype.forEach
     var children = animalHolder.childNodes
-
+    var wrongHolder = []
+    var rightHolder = []
     var newAnimal = this.state.animal
     children.forEach (function (item){
       if (item.id === "key"+newAnimal) {
-        console.log ("you got it right")
+        //console.log ("you got it right")
+        rightHolder.push(1)
       }
-    })
-    
-    
+    });
+
+    if (rightHolder.length === 0){
+      wrongHolder.push (1)
+    }
+
+    var newScore_right = (rightHolder +++ oldScore_right)
+    var newScore_wrong = (wrongHolder +++ oldScore_wrong)
+   
+    this.setState({
+      rightGuesses: newScore_right
+    });
+
+    this.setState({
+      wrongGuesses: newScore_wrong
+    });
+
   },
   renderTree: function( data ) {
     // console.log('here!', this.state, this.state.data.Animalia)
     return this._walk( data, (<div className="test"><div>Animalia</div></div>) );
   },//returns divs with obj keys
   _walk: function( node, ptr ) {
-
-
     if ( typeof node === "undefined" ) {
       return ptr;
     }
@@ -464,6 +482,8 @@ var Container = React.createClass({
               <div className="col-md-4 guess">
                 <button onClick={this.handleClick}>another animal</button>
                 <div>{this.state.animal}</div>
+                <div className="score">Wrong:{this.state.wrongGuesses}</div>
+                <div className="score">Right:{this.state.rightGuesses}</div>
               </div>
               <div className="col-md-4">
                 <div id="state.foo" data-foo={this.state.foo}>
