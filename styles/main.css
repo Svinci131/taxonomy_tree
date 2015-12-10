@@ -9,6 +9,9 @@ body {
 }
 
 
+.red {
+	background-color: red !important;
+}
 
 
 .cat-title {
@@ -29,7 +32,6 @@ body {
 .animal {
 	background-color: white;
 	margin: 2px;
-	display:inline-block;
 	border: 1px solid black;
 }
 

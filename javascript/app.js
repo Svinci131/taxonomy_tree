@@ -295,7 +295,8 @@ var Container = React.createClass({
   },
   //foo = the tree after the render tree function  
   handleClick: function () {
-    //when they guess it add the animal but doesn't show it 
+    //when they press guess it add the animal but doesn't show it 
+    //if its the new animal class = invisible 
     //on button click it looks to see if the animal div is there 
     //and if it is it shows it 
 
@@ -340,14 +341,16 @@ var Container = React.createClass({
   },
   guess:function (id){
     var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
-    console.log(animalHolder.childNodes, this.state.animal)
+    //console.log(animalHolder.querySelector("#key"+this.state.animal))
 
     NodeList.prototype.forEach = Array.prototype.forEach
     var children = animalHolder.childNodes
+
+
     children.forEach (function (item){
-      console.log(item)
+      //console.log(item.id)
     })
-    // [].forEach.call(animalHolder, child => console.log(child))
+    
     
   },
   renderTree: function( data ) {
@@ -355,6 +358,8 @@ var Container = React.createClass({
     return this._walk( data, (<div className="test"><div>Animalia</div></div>) );
   },//returns divs with obj keys
   _walk: function( node, ptr ) {
+
+
     if ( typeof node === "undefined" ) {
       return ptr;
     }
@@ -362,19 +367,32 @@ var Container = React.createClass({
 
     var keys = Object.keys( node );
     if ( keys.length !== 0 ) {
+
       return keys.map(function( key, i ){//took ou tthe i next to key            
+        
         if ( !isNaN(parseInt( key ) ) ) {
+
           if (key === "0"){
             //console.log(key, ptr.props.children.props.children)
           }
           if (typeof node[ key ][ 0 ] === "undefined" ) {
             return null;
           }
+          
+          var newAnimal = this.state.animal;
           var key = node[ 0 ].map(function (i, idx) {
             // console.log(key[0],idx)
-           ///console.log(i.Image.src, i.AnimalName)
+            //console.log(this.state.animal, )
+
+            if (newAnimal === i.AnimalName) {
+              var animalStatus = "animal red"
+            }
+            else {
+              var animalStatus = "animal"
+            }
+
             return (
-             <div id={"key"+i.AnimalName} className= "animal">
+             <div id={"key"+i.AnimalName} className= {animalStatus}>
               {i.AnimalName}
              </div>
             );
