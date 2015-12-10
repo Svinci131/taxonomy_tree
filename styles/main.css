@@ -73,3 +73,7 @@ body {
 #renderTree div div div div div div div div div div div.cat-title{
 	background-color: white !important;
 }
+
+.guessAnimal {
+	display: none;
+}
