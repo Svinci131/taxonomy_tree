@@ -346,9 +346,11 @@ var Container = React.createClass({
     NodeList.prototype.forEach = Array.prototype.forEach
     var children = animalHolder.childNodes
 
-
+    var newAnimal = this.state.animal
     children.forEach (function (item){
-      //console.log(item.id)
+      if (item.id === "key"+newAnimal) {
+        console.log ("you got it right")
+      }
     })
     
     
