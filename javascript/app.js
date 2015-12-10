@@ -340,7 +340,15 @@ var Container = React.createClass({
   },
   guess:function (id){
     var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
-    console.log(animalHolder)
+    console.log(animalHolder.childNodes, this.state.animal)
+
+    NodeList.prototype.forEach = Array.prototype.forEach
+    var children = animalHolder.childNodes
+    children.forEach (function (item){
+      console.log(item)
+    })
+    // [].forEach.call(animalHolder, child => console.log(child))
+    
   },
   renderTree: function( data ) {
     // console.log('here!', this.state, this.state.data.Animalia)
