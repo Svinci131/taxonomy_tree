@@ -16,8 +16,6 @@ function _render(  ) {
     );  
 }
 
-
-
 function buildTree () {
   for ( var i = 0; i < animalList.length; ++i ) {
     addTo( animalList[i]);
@@ -58,16 +56,6 @@ function buildTree () {
   console.log( tree )
   _render( tree, events );
 }
-//dynamincally builds a "tree" (obj) with the taxonomic categories
-//only used the main ones(doesn't account for Subclasses and Infraclasses, ect)
-
-//all animals, vertavrates, mammals, carnivores
-//console.log(animalList[22])//wolf
-//console.log(animalList[3])//badger
-
-//both felines
-//console.log(animalList[7])//lion
-//console.log(animalList[7])//tiger
 
 function compare (item) {
   var tags = ['Kingdom', 'Phylum', 'Class', 'Order', 'Family', 'Genus', 'Species' ];
@@ -273,8 +261,8 @@ function randomAnimalGenerator  () {
     var randomAnimal = animalList[ randomIndex ] ;
     // remove from animalList so we don't get dupes!
     animalList.splice( randomIndex, 1 );
-   // console.log(randomAnimal.AnimalName);
-    compare(randomAnimal)
+    //console.log(randomAnimal.AnimalName);
+    return randomAnimal
 }//grabs a random animal
 //removes it from the data obj
 //runs the compare function to find it's appropriate place in the tree
@@ -289,14 +277,37 @@ var Container = React.createClass({
       clicked: {},
       open:null,
       foo: Date.now(),
+      animal: randomAnimalGenerator(),
       animalsAreThere: false
     }
   },
+
   //foo = the tree after the render tree function  
   handleClick: function () {
     // this.props.events.emit('foo');
-    randomAnimalGenerator();
-     this.setState({
+    var animal = randomAnimalGenerator();
+    // black out the guess button 
+    // have the user click 
+
+    // see what the user clicked 
+    // see if it matches the compare function 
+
+      //would be add it build a new tree with the animal in it 
+      //see if it matches the ideal tree 
+
+      //add the animal and render the ideal tree no matter what 
+      //get the div that the user clicked on
+      //if that div has the animal in it return true
+      //otherwise return false, but leave the animal there 
+
+
+    //if it does run the compare function 
+
+    this.setState({
+      animal: animal
+    })
+
+    this.setState({
       animalsAreThere: true 
     });
 
@@ -304,7 +315,14 @@ var Container = React.createClass({
     this.setState({
       foo: Math.random()
     });
+    compare(this.state.animal);
+
   },  
+  guess:function (e) {
+
+
+    alert(event.target.id)
+  },
   setVisibility: function (id, event) { 
     var opens = this.state.open;
 
@@ -318,7 +336,6 @@ var Container = React.createClass({
     else {
       opens[ id ] = !opens[ id ];  
     }
-    
     this.setState({
       open: opens,
       // isInitial: false
@@ -400,7 +417,7 @@ var Container = React.createClass({
             vis.display = "none";
         }
 
-        return <div id= {"ptr" +key}  className= "cat-wrapper">
+        return <div id= {"ptr" +key} className= "cat-wrapper">
             <div id= {"title" +key} className="cat-title" onClick={this.setVisibility.bind(this, "ptr" +key)}>
               { (key !== "undefined") ? key : "" }
               <span className = {arrow} id={key}></span>
@@ -418,12 +435,17 @@ var Container = React.createClass({
   },
   render: function() {
     return (
-          <div class="container-fluid">
-            <button onClick={this.handleClick}>guess</button>
-              <div class="row">
-                <div id="state.foo" data-foo={this.state.foo}>
-                  <div id="renderTree">{this.renderTree( tree )}</div>
-                </div>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-4 guess">
+               <button onClick={this.handleClick}>guess</button>
+                <div className="guess_animal">
+                {this.state.animal.AnimalName}</div>
+              </div>
+            
+              <div className="col-md-8" id="state.foo" data-foo={this.state.foo}>
+                <div id="renderTree">{this.renderTree( tree )}</div>
+              </div>
             </div>
           </div>);
   }

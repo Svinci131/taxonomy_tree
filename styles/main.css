@@ -9,17 +9,7 @@ body {
 }
 
 
-#ptrChordata .cat-title {
-	background-color: red;
-}
 
-#ptrMammalia .cat-title {
-	background-color: blue;
-}
-
-#ptrAves .cat-title {
-	background-color: blue;
-}
 
 .cat-title {
 
@@ -30,8 +20,17 @@ body {
 	display: inline-block;
 }
 
+.guess {
+	background-color: white;
+	padding: 2%
+}
+
+
 .animal {
 	background-color: white;
+	margin: 2px;
+	display:inline-block;
+	border: 1px solid black;
 }
 
 .invisible {
