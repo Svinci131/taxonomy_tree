@@ -298,16 +298,15 @@ var Container = React.createClass({
   //foo = the tree after the render tree function  
   handleClick: function () {
     var animal = randomAnimalGenerator();
-    compare(animal)
+    
 
     this.setState({
-      animal: animal.AnimalName
+      animal: animal
     });
     this.setState({
       animalsAreThere: true 
     });
 
-    //console.log(tree)
     this.setState({
       foo: Math.random()
     });
@@ -339,6 +338,8 @@ var Container = React.createClass({
   guess:function (id){
     if (event.target.className !== "glyphicon glyphicon-triangle-bottom" && event.target.className !== "glyphicon glyphicon-triangle-left") {
     if (this.state.animalsAreThere === true){
+      var newAnimal = this.state.animal
+      compare(newAnimal)
       var oldScore_right = this.state.rightGuesses
       var oldScore_wrong = this.state.wrongGuesses
       var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
@@ -347,7 +348,7 @@ var Container = React.createClass({
       var children = animalHolder.childNodes
       var wrongHolder = []
       var rightHolder = []
-      var newAnimal = this.state.animal
+      
       children.forEach (function (item){
         if (item.id === "key"+newAnimal) {
           //console.log ("you got it right")
