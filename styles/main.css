@@ -2,71 +2,75 @@ body {
 	background-color: rgb(65, 107, 111);
 }
 
-.title {
+.cat-wrapper {
+	margin-left: 2%;
+	border-left: 1px solid #333;
+
+}
+
+
+#ptrChordata .cat-title {
+	background-color: red;
+}
+
+#ptrMammalia .cat-title {
+	background-color: blue;
+}
+
+#ptrAves .cat-title {
+	background-color: blue;
+}
+
+.cat-title {
+
 	background-color: rgb(251, 239, 202);
-	margin:3%;
+	margin:1%;
 	padding:1%;
 	font-size: 18px;
+	display: inline-block;
 }
 
 .animal {
-	background-color: black;
-/*	background-size: cover;*/
-	color:white;
-	width:20%;
-	height:20%;
-	display:inline-block;
-	margin: 1%;
-}
-.animal_img {
-	width:10px;
-	height:10px;
-}
-/* CURRENTLY IN: styles/main.css */
-.thumbnail {
-	width:200px;
-	height:auto;
-}
-
-.thumbnails {
-	display: inline-block;
-	float: left;
-}
-
-.photo {
-	display: inline-block;
-	margin-left:3px;
-	margin-right:3px;
+	background-color: white;
 }
 
 .invisible {
 	display:none;
 }
 
-
-
-
-
-.block{
-	display: inline-block;
-
-	font-size: 10pt;
-	vertical-align: top;
-}
-
 .caret{
 	margin-left: 1px;
 }
 
-.title{
-	text-align: center;
-	clear:left;
-	margin-bottom: 10pt;
-}
+
 .border.foo {
 	display: none;
 }
 
 #ptrundefined {
 	display: none;
+}
+
+#renderTree div .cat-title{
+	background-color: red !important;
+}
+
+#renderTree div div .cat-title{
+	background-color: green !important;
+}
+
+#renderTree div div div div .cat-title{
+	background-color: blue !important;
+}
+
+#renderTree div div div div div div .cat-title{
+	background-color: yellow !important;
+}
+
+#renderTree div div div div div div div div .cat-title{
+	background-color: purple !important;
+}
+
+#renderTree div div div div div div div div div div div.cat-title{
+	background-color: white !important;
 }

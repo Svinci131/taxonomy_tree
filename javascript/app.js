@@ -305,9 +305,6 @@ var Container = React.createClass({
       foo: Math.random()
     });
   },  
-  toggle:function (el) {
-    console.log(el)
-  },
   setVisibility: function (id, event) { 
     var opens = this.state.open;
 
@@ -334,12 +331,13 @@ var Container = React.createClass({
   },
   renderTree: function( data ) {
     // console.log('here!', this.state, this.state.data.Animalia)
-    return this._walk( data, (<div><div>Animalia</div><div>Animalia</div></div>) );
+    return this._walk( data, (<div className="test"><div>Animalia</div></div>) );
   },//returns divs with obj keys
   _walk: function( node, ptr ) {
     if ( typeof node === "undefined" ) {
       return ptr;
     }
+    var level = 0; 
 
     var keys = Object.keys( node );
     if ( keys.length !== 0 ) {
@@ -356,16 +354,16 @@ var Container = React.createClass({
            console.log(i.Image.src, i.AnimalName)
             return (
              <div id={"key"+i.AnimalName} className= "animal">
-          
               {i.AnimalName}
              </div>
             );
           });
         }//if isnan
 
-        else {
-          var key = key;
-        }
+      else {
+        console.log ()
+        var key = key;
+      }
         var props = {
           children: (
             <div id={"props" + key}>
@@ -378,8 +376,14 @@ var Container = React.createClass({
         var foo = (<div {...props} />)
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
-      
-             //DETERMIN IF CLICKED
+        
+        /// I need a way of saying at this level change them to x color
+        //get the div 
+        // all the children in the 
+
+
+
+        //DETERMIN IF CLICKED
 
         if (this.state.clicked[key] === true){ //if the key is clicked 
           arrow = "glyphicon glyphicon-triangle-left";
@@ -396,28 +400,8 @@ var Container = React.createClass({
             vis.display = "none";
         }
 
-          //layout
-        var length = keys.length;
-
-        if (typeof key !== "string"){//if its an animal obj//it's 100% width 
-          var style = {width: "100%"};
-          var animalsAreThere = true
-          arrow ="hide"
-        }//else if 
-
-        else if (keys.length <= 3){//if there are two three cat it's 50 or 25%
-          if (this.state.animalsAreThere === true)
-          var length = keys.length - 1;
-          var style = {width: ""+(100/(length))+"%"};
-        }
-        else {//if it's more they are bigger and go to multiple lines
-          var style = {width: ""+(100/((length)/3))+"%"};
-          //console.log(keys.length, style)
-        }
-        ////////LAYOUTN
-
-        return <div id= {"ptr" +key} style={style} className= "test block border">
-            <div className={"title "} onClick={this.setVisibility.bind(this, "ptr" +key)}>
+        return <div id= {"ptr" +key}  className= "cat-wrapper">
+            <div id= {"title" +key} className="cat-title" onClick={this.setVisibility.bind(this, "ptr" +key)}>
               { (key !== "undefined") ? key : "" }
               <span className = {arrow} id={key}></span>
             </div>
@@ -437,8 +421,8 @@ var Container = React.createClass({
           <div class="container-fluid">
             <button onClick={this.handleClick}>guess</button>
               <div class="row">
-                <div data-foo={this.state.foo}>
-                  <div>{this.renderTree( tree )}</div>
+                <div id="state.foo" data-foo={this.state.foo}>
+                  <div id="renderTree">{this.renderTree( tree )}</div>
                 </div>
             </div>
           </div>);
