@@ -295,8 +295,9 @@ var Container = React.createClass({
   },
   //foo = the tree after the render tree function  
   handleClick: function () {
-    // this.props.events.emit('foo');
-
+    //when they guess it add the animal but doesn't show it 
+    //on button click it looks to see if the animal div is there 
+    //and if it is it shows it 
 
     var animal = randomAnimalGenerator();
     compare(animal)
@@ -409,9 +410,9 @@ var Container = React.createClass({
         }
 
         return <div id= {"ptr" +key}  className= "cat-wrapper">
-            <div id= {"title" +key} className="cat-title" onClick={this.setVisibility.bind(this, "ptr" +key)}>
+            <div id= {"title" +key} className="cat-title" >
               { (key !== "undefined") ? key : "" }
-              <span className = {arrow} id={key}></span>
+              <span className = {arrow} id={key} onClick={this.setVisibility.bind(this, "ptr" +key)}></span>
             </div>
             <div style={vis}>
             {this._walk( node[ key ], ptr )}
