@@ -338,6 +338,10 @@ var Container = React.createClass({
     });
     this.state.clicked[event.target.id]=this.state.visible;
   },
+  guess:function (id){
+    var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
+    console.log(animalHolder)
+  },
   renderTree: function( data ) {
     // console.log('here!', this.state, this.state.data.Animalia)
     return this._walk( data, (<div className="test"><div>Animalia</div></div>) );
@@ -353,14 +357,14 @@ var Container = React.createClass({
       return keys.map(function( key, i ){//took ou tthe i next to key            
         if ( !isNaN(parseInt( key ) ) ) {
           if (key === "0"){
-            console.log(key, ptr.props.children.props.children)
+            //console.log(key, ptr.props.children.props.children)
           }
           if (typeof node[ key ][ 0 ] === "undefined" ) {
             return null;
           }
           var key = node[ 0 ].map(function (i, idx) {
             // console.log(key[0],idx)
-           console.log(i.Image.src, i.AnimalName)
+           ///console.log(i.Image.src, i.AnimalName)
             return (
              <div id={"key"+i.AnimalName} className= "animal">
               {i.AnimalName}
@@ -410,7 +414,7 @@ var Container = React.createClass({
         }
 
         return <div id= {"ptr" +key}  className= "cat-wrapper">
-            <div id= {"title" +key} className="cat-title" >
+            <div id= {"title" +key} className="cat-title" onClick={this.guess.bind(this, key)}>
               { (key !== "undefined") ? key : "" }
               <span className = {arrow} id={key} onClick={this.setVisibility.bind(this, "ptr" +key)}></span>
             </div>
