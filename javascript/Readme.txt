@@ -1,29 +1,9 @@
-1. i press guess I get an animal, that animal is added and the tree is updated
-2. I guess and the animal appears in the right spot 
-3. I press guess again and it gives me a new animal and adds it to the tree 
+Each time you guess a new animal is added to the tree
+But, that animal may be more closely related to some animals on the tree than the others
 
-
-1. i need to press guess I get the racoon
-adds it to animal but doesn't show 
-
-1. I guess that the raccoon is an animal 
-2. it draws a new animal for me - bear
-3. add that animal the tree in mammalia but doens't show it 
-4. the racoon is no longer the new animal so it shows up in mammalia 
-5. ok obvi its a mammal so I click mammalia 
-6. it draws me a new card 
-7. this time its a carnivore, a tiger, 
-8. it'll move bear and have it show up in carnivora 
-
-
-ok. what would happen if i hit guess got a racoon
-then hit animalia and then it saved what I clicked 
-and ran a function that updated the tree //and rendered it 
-and then it checked if animalia had that animal and gave me a point 
-
-then I would hit a button and get an animal 
+Try and guess if any of the animals on the board belong in another more specefied group than click the group they belong to and see if you're right 
 
 
 
+1. show animals details when you mouse over
 
-2. fix the thing where the score changes as you when you click on the arrows 

@@ -298,7 +298,6 @@ var Container = React.createClass({
   //foo = the tree after the render tree function  
   handleClick: function () {
     var animal = randomAnimalGenerator();
-    
 
     this.setState({
       animal: animal
@@ -371,6 +370,11 @@ var Container = React.createClass({
         wrongGuesses: newScore_wrong
       });
     }
+    }
+  },
+  drawCard: function (){
+    if (this.state.animal !== null){
+      return (<div>{this.state.animal.AnimalName}</div>)
     }
   },
   renderTree: function( data ) {
@@ -471,16 +475,18 @@ var Container = React.createClass({
     return (
           <div className="container-fluid">
             <div className="row">
-              <div className="col-md-2 guess">
-                <button onClick={this.handleClick}>another animal</button>
-                <div>{this.state.animal}</div>
-                <div className="score">Wrong:{this.state.wrongGuesses}</div>
-                <div className="score">Right:{this.state.rightGuesses}</div>
-              </div>
-              <div className="col-md-4">
+
+              <div className="col-md-8">
+                <h1>Taxonomy!!!</h1>
                 <div id="state.foo" data-foo={this.state.foo}>
                   <div id="renderTree">{this.renderTree( tree )}</div>
                 </div>
+              </div>
+              <div className="col-md-4 guess">
+                <button onClick={this.handleClick}>another animal</button>
+                <div>{this.drawCard()}</div>
+                <div className="score">Wrong:{this.state.wrongGuesses}</div>
+                <div className="score">Right:{this.state.rightGuesses}</div>
               </div>
             </div>
           </div>);
