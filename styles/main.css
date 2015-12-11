@@ -4,12 +4,16 @@ body {
 	font-family: ‘Merriweather’, Georgia, serif; 
 }
 
+
+
 .cat-wrapper {
 	margin-left: 2%;
 	border-left: 1px solid #333;
 
 }
-
+.score-board {
+	background-color: rgb(160,181,183);
+}
 
 .red {
 	background-color: red !important;
@@ -25,12 +29,27 @@ body {
 	display: inline-block;
 }
 
-.guess {
+.animal-card {
 	background-color: rgb(65, 107, 111);
 	padding: 2%
 }
 
+.animal-card-title {
+	text-align: center;
+	size:14px;
+}
 
+.animal-card-title .italic {
+	font-style: italic;
+}
+.animal-card-photo {
+	width:95%;
+	height:160px;
+	border: 1px solid #333;
+	margin-top:2%;
+	margin-bottom:2%;
+	background-size: cover;
+}
 .animal {
 	background-color: white;
 	margin: 2px;
