@@ -58,18 +58,9 @@ function buildTree () {
   console.log( tree )
   _render( tree, events );
 }
-//dynamincally builds a "tree" (obj) with the taxonomic categories
-//only used the main ones(doesn't account for Subclasses and Infraclasses, ect)
-
-//all animals, vertavrates, mammals, carnivores
-//console.log(animalList[22])//wolf
-//console.log(animalList[3])//badger
-
-//both felines
-//console.log(animalList[7])//lion
-//console.log(animalList[7])//tiger
 
 function compare (item) {
+  //get every the key value for each item  
   var tags = ['Kingdom', 'Phylum', 'Class', 'Order', 'Family', 'Genus', 'Species' ];
   var animalTags = tags.map(function(tag){
     if ( typeof item[tag] === "undefined" ) {
@@ -78,6 +69,7 @@ function compare (item) {
     return item[ tag ].text;
   });
 
+  // define the level in the tree object of each item's key value
   var K = (tree[animalTags[0]]),
      P = (K[animalTags[1]]),
      C = (P[animalTags[2]]),
@@ -85,8 +77,8 @@ function compare (item) {
      F = (O[animalTags[4]]),
      G = (F[animalTags[5]]); 
 
+  //define pointer
   var pointer = null;
-
   var obj = ['K', 'P', 'C','O', 'F', 'G'].reduce(function(_obj, currentLetter, idx){
     if ( pointer === null ) {
       _obj[ currentLetter ] = tree[ animalTags[ idx ] ];
@@ -352,22 +344,14 @@ var Container = React.createClass({
       }
     }  
     compare(newAnimal)
-          // 
-    // this.handleClick().then (function () {
-    // //   console.log(newAnimal, this.state.animal.AnimalName)
-    // // });
   },
   score: function (id, newAnimal){
 
         var oldScore_right = this.state.rightGuesses
         var oldScore_wrong = this.state.wrongGuesses
 
-        //on guess, it updates the object 
-        //then rerenders the tree and 
-        //checks the guessed div and gets the score 
-
         var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
-        console.log("HERE", this.state.animal.AnimalName, animalHolder.childNodes[0],animalHolder.childNodes[1])
+        //console.log("HERE", this.state.animal.AnimalName, animalHolder.childNodes[0],animalHolder.childNodes[1])
 
         NodeList.prototype.forEach = Array.prototype.forEach
         var children = animalHolder.childNodes
@@ -375,9 +359,9 @@ var Container = React.createClass({
         var rightHolder = []
         
         children.forEach (function (item){
-          console.log (item.id, newAnimal)
+          //console.log (item.id, newAnimal)
           if (item.id === "key"+newAnimal.AnimalName) {
-            console.log ("you got it right")
+            //console.log ("you got it right")
             rightHolder.push(1)
           }
         });
@@ -423,7 +407,26 @@ var Container = React.createClass({
             //console.log(key, ptr.props.children.props.children)
           }
           if (typeof node[ key ][ 0 ] === "undefined" ) {
-            return null;
+            // if ( node[ key ].length > 0 ) {
+            //   var _ar = [];
+            //   for( var _item in node[ key ] ) {
+            //     console.log( _item, node[ key ][ _item ] );
+            //     _ar.push( node[ key ][ _item ] );
+            //   }
+            //   _ar.forEach(function(_arItem, idx){
+            //     node[ key ][ idx ] = _arItem;
+            //   });
+            //   return null;
+            // }
+            // else {
+            //   return null;
+            // }
+            if ( node[ key ].length < 1 ) {
+              return null;
+            }
+
+            //return null;
+            
           }
           
           var newAnimal = this.state.animal;
@@ -447,7 +450,7 @@ var Container = React.createClass({
         }//if isnan
 
       else {
-        console.log ()
+        //console.log ()
         var key = key;
       }
         var props = {
