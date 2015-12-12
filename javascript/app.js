@@ -291,14 +291,19 @@ var Container = React.createClass({
       foo: Date.now(),
       animal: null,
       animalsAreThere: false,
+      currentGuess: null,
       rightGuesses: 0,
       wrongGuesses: 0
+      
     }
   }, 
   //foo = the tree after the render tree function  
   handleClick: function () {
     var animal = randomAnimalGenerator();
-
+    if (this.state.currentGuess !== null){
+      this.score(this.state.currentGuess, this.state.animal)
+    }
+    
     this.setState({
       animal: animal
     });
@@ -336,41 +341,61 @@ var Container = React.createClass({
   },
   guess:function (id){
     if (event.target.className !== "glyphicon glyphicon-triangle-bottom" && event.target.className !== "glyphicon glyphicon-triangle-left") {
-    if (this.state.animalsAreThere === true){
-      var newAnimal = this.state.animal
-      compare(newAnimal)
-      var oldScore_right = this.state.rightGuesses
-      var oldScore_wrong = this.state.wrongGuesses
-      var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
-      //console.log(animalHolder.querySelector("#key"+this.state.animal))
-      NodeList.prototype.forEach = Array.prototype.forEach
-      var children = animalHolder.childNodes
-      var wrongHolder = []
-      var rightHolder = []
-      
-      children.forEach (function (item){
-        if (item.id === "key"+newAnimal) {
-          //console.log ("you got it right")
-          rightHolder.push(1)
-        }
-      });
+      if (this.state.animalsAreThere === true){
+        
+        var newAnimal = this.state.animal
+        console.log("FOO")
 
-      if (rightHolder.length === 0){
-        wrongHolder.push (1)
+        this.setState({currentGuess: id}, function() {
+          this.handleClick()
+        });
       }
+    }  
+    compare(newAnimal)
+          // 
+    // this.handleClick().then (function () {
+    // //   console.log(newAnimal, this.state.animal.AnimalName)
+    // // });
+  },
+  score: function (id, newAnimal){
 
-      var newScore_right = (rightHolder +++ oldScore_right)
-      var newScore_wrong = (wrongHolder +++ oldScore_wrong)
-     
-      this.setState({
-        rightGuesses: newScore_right
-      });
+        var oldScore_right = this.state.rightGuesses
+        var oldScore_wrong = this.state.wrongGuesses
 
-      this.setState({
-        wrongGuesses: newScore_wrong
-      });
-    }
-    }
+        //on guess, it updates the object 
+        //then rerenders the tree and 
+        //checks the guessed div and gets the score 
+
+        var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
+        console.log("HERE", this.state.animal.AnimalName, animalHolder.childNodes[0],animalHolder.childNodes[1])
+
+        NodeList.prototype.forEach = Array.prototype.forEach
+        var children = animalHolder.childNodes
+        var wrongHolder = []
+        var rightHolder = []
+        
+        children.forEach (function (item){
+          console.log (item.id, newAnimal)
+          if (item.id === "key"+newAnimal.AnimalName) {
+            console.log ("you got it right")
+            rightHolder.push(1)
+          }
+        });
+
+        if (rightHolder.length === 0){
+          wrongHolder.push (1)
+        }
+
+        var newScore_right = (rightHolder +++ oldScore_right)
+        var newScore_wrong = (wrongHolder +++ oldScore_wrong)
+       
+        this.setState({
+          rightGuesses: newScore_right
+        });
+
+        this.setState({
+          wrongGuesses: newScore_wrong
+        });
   },
   drawCard: function (){
     if (this.state.animal !== null){
