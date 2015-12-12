@@ -406,11 +406,25 @@ var Container = React.createClass({
           if (key === "0"){
             //console.log(key, ptr.props.children.props.children)
           }
-          
+         
           //console.log(typeof node[ key ][ 0 ], key)
+
+          if (node[ 0 ] === []){
+            console.log(key)
+          }
           if (typeof node[ key ][ 0 ] === "undefined") {
-          console.log(node[ key ][ 0 ])
-          return (<div></div>)
+             //console.log(node[ 0 ].length)
+             var _ar = [];
+             if ( node[ key ].length > 0 ) {
+               for( var _item in node[ key ] ) {
+                //console.log( _item, node[ key ][ _item ] );
+                _ar.push( node[ key ][ _item ] );
+              }
+             }
+             if (_ar.length === 0){
+              return null
+             }
+          //return (<div></div>)
           //   //console.log()
           //   // if ( node[ key ].length > 0 ) {
           //   //   var _ar = [];
@@ -491,7 +505,6 @@ var Container = React.createClass({
         // if ("ptr" +key === "ptr,") {
         //   var ptrClass = invisible;
         // }
-
 
         return <div id= {"ptr" +key} className= "cat-wrapper">
             <div id= {"title" +key} className="cat-title" onClick={this.guess.bind(this, key)}>
