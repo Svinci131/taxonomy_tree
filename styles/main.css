@@ -67,6 +67,9 @@ body {
 	display:none;
 }
 
+#invisible {
+	display:none;
+}
 .caret{
 	margin-left: 1px;
 }

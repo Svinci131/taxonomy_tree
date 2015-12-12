@@ -406,26 +406,32 @@ var Container = React.createClass({
           if (key === "0"){
             //console.log(key, ptr.props.children.props.children)
           }
-          if (typeof node[ key ][ 0 ] === "undefined" ) {
-            // if ( node[ key ].length > 0 ) {
-            //   var _ar = [];
-            //   for( var _item in node[ key ] ) {
-            //     console.log( _item, node[ key ][ _item ] );
-            //     _ar.push( node[ key ][ _item ] );
-            //   }
-            //   _ar.forEach(function(_arItem, idx){
-            //     node[ key ][ idx ] = _arItem;
-            //   });
-            //   return null;
-            // }
-            // else {
-            //   return null;
-            // }
-            if ( node[ key ].length < 1 ) {
-              return null;
-            }
+          
+          //console.log(typeof node[ key ][ 0 ], key)
+          if (typeof node[ key ][ 0 ] === "undefined") {
+          console.log(node[ key ][ 0 ])
+          return (<div></div>)
+          //   //console.log()
+          //   // if ( node[ key ].length > 0 ) {
+          //   //   var _ar = [];
+          //   //   for( var _item in node[ key ] ) {
+          //   //     console.log( _item, node[ key ][ _item ] );
+          //   //     _ar.push( node[ key ][ _item ] );
+          //   //   }
+          //   //   _ar.forEach(function(_arItem, idx){
+          //   //     node[ key ][ idx ] = _arItem;
+          //   //   });
+          //   //   return null;
+          //   // }
+          //   // else {
+          //   //   return null;
+          //   // }
 
-            //return null;
+          //   // if ( node[ key ].length < 0 ) {
+          //   //   return null;
+          //   // }
+
+          //   //return null;
             
           }
           
@@ -482,8 +488,12 @@ var Container = React.createClass({
         if ( this.state.open && this.state.open[ "ptr" +key ] === false ) {
             vis.display = "none";
         }
+        // if ("ptr" +key === "ptr,") {
+        //   var ptrClass = invisible;
+        // }
 
-        return <div id= {"ptr" +key}  className= "cat-wrapper">
+
+        return <div id= {"ptr" +key} className= "cat-wrapper">
             <div id= {"title" +key} className="cat-title" onClick={this.guess.bind(this, key)}>
               { (key !== "undefined") ? key : "" }
               <span className = {arrow} id={key} onClick={this.setVisibility.bind(this, "ptr" +key)}></span>
