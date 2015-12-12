@@ -374,14 +374,7 @@ var Container = React.createClass({
   },
   drawCard: function (){
     if (this.state.animal !== null){
-     // console.log(this.state.animal.Image.href)
-      backGroundImage = {backgroundImage: 'url(' + this.state.animal.Image.src+ ')'}
-      return (<div>
-                <div style={backGroundImage} className="animal-card-photo"></div>
-                <div className="animal-card-title">{this.state.animal.AnimalName}</div>
-                <div className="animal-card-title italic">{this.state.animal.Species}</div>
-              </div>
-              )
+      return (<div>{this.state.animal.AnimalName}</div>)
     }
   },
   renderTree: function( data ) {
@@ -489,15 +482,11 @@ var Container = React.createClass({
                   <div id="renderTree">{this.renderTree( tree )}</div>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className="animal-card">
-                  <button onClick={this.handleClick}>another animal</button>
-                  {this.drawCard()}
-                </div>
-                <div className="score-board">
-                 <div className="score">Wrong:{this.state.wrongGuesses}</div>
-                  <div className="score">Right:{this.state.rightGuesses}</div>
-                </div>
+              <div className="col-md-4 guess">
+                <button onClick={this.handleClick}>another animal</button>
+                <div>{this.drawCard()}</div>
+                <div className="score">Wrong:{this.state.wrongGuesses}</div>
+                <div className="score">Right:{this.state.rightGuesses}</div>
               </div>
             </div>
           </div>);

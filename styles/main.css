@@ -11,9 +11,7 @@ body {
 	border-left: 1px solid #333;
 
 }
-.score-board {
-	background-color: rgb(160,181,183);
-}
+
 
 .red {
 	background-color: red !important;
@@ -29,9 +27,18 @@ body {
 	display: inline-block;
 }
 
+.sidebar {
+	padding: 2%;
+	color:white;
+	font-size: 16px;
+}
+
+.score {
+	background-color: rgb(160,181,183);
+
+}
 .animal-card {
 	background-color: rgb(65, 107, 111);
-	padding: 2%
 }
 
 .animal-card-title {
