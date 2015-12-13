@@ -5,7 +5,17 @@ Try and guess if any of the animals on the board belong in another more specefie
 
 
 
-1. close all tabs initially- have them open as animals are added
+
+
+
+
+
+
+
+
+
+
+
 2. add thumbanail image
 3. make it so it'll update to closest cat- I thought I did that? 
 4. show animals details when you mouse over

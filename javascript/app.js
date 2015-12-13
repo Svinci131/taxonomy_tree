@@ -309,26 +309,6 @@ var Container = React.createClass({
     });
   },  
   setVisibility: function (id, event) { 
-    // var opens = this.state.open;
-    
-
-    // if ( opens === null ) {
-    //   opens = {};
-    // }
-    // //if it's the first time 
-    // //if its never been clicked
-    // if ( typeof opens[ id ] === "undefined" ) {
-    //   opens[id] = true;
-    // }
-    // else {
-    //   opens[ id ] = !opens[ id ];  
-    // }
-    
-    // this.setState({
-    //   open: opens,
-    //   // isInitial: false
-    // }, function(){console.log(opens)});
-
     this.setState({visible: !this.state.visible}, function(){
     });
     console.log("setvibility",event.target.id)
@@ -362,13 +342,47 @@ var Container = React.createClass({
         var oldScore_right = this.state.rightGuesses
         var oldScore_wrong = this.state.wrongGuesses
 
+        // console.log(tree)
+        //on score get every parent 
+
+        //if object has animals leave set it to open 
+        // console.log(document.getElementById("ptrAnimalia").childNodes)
+        // console.log($("#ptrAnimalia").children)
         //console.log($(".cat-title div #key"+newAnimal.AnimalName))
 
-        var parentID = $("#key"+newAnimal.AnimalName).parent().parent().parent().parent().attr("id")
-        parentID = parentID.substring(3, parentID.length)
-        rightPlace = parentID
-        console.log(rightPlace)
+        // var parent = $("#key"+newAnimal.AnimalName).parent().parent().parent().parent().attr("id")
+        // parent = parent.substring(3, parent.length)
+        // // rightPlace = parentID
+        // console.log("HERE", parent)
 
+        var parentEls = $("#key"+newAnimal.AnimalName).parents()
+          .map(function() {
+            if ($(this).attr("class") === "cat-wrapper"){
+              var parentID = $(this).attr("id")
+              parentID = parentID.substring(3, parentID.length)
+              if (parentID[0] !== "["){
+                console.log(parentID)
+
+                return parentID;
+                //console.log(this.state.clicked)
+                //this.state.clicked[parentID] = true;
+              }
+            }
+            
+          
+        }).get()//
+
+
+        //console.log(this.state.clicked)
+        console.log( parentEls )
+
+        parentEls.forEach (function(i){
+          console.log(this, i)
+          this.state.clicked[i] = true;
+        }.bind(this))
+        
+        
+        console.log(this.state.clicked)
         //you have to click it open first?
 
         var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
@@ -395,9 +409,9 @@ var Container = React.createClass({
         // console.log("old", oldScore_right, oldScore_wrong)
         // console.log("new", newScore_right, newScore_wrong)
 
-        if (newScore_right > oldScore_right) {
-          this.state.clicked[id]=true;
-        }
+        // if (newScore_right > oldScore_right) {
+        //   this.state.clicked[id]=true;
+        // }
         //issues are if you're wrong how do you get the right id
         // how do you open the parent tabs of the right id 
 
@@ -428,6 +442,11 @@ var Container = React.createClass({
     if ( keys.length !== 0 ) {
 
       return keys.map(function( key, i ){//took ou tthe i next to key            
+        // if (typeof node[ key ][ 0 ] !== "undefined") {
+        //   //console.log("HERE", node[key][0], key)
+        //   this.state.clicked[key] = true;
+        //   //console.log("HERE",this.state.clicked)
+        // }//means your can't close it 
         
         if ( !isNaN(parseInt( key ) ) ) {
 
@@ -436,10 +455,6 @@ var Container = React.createClass({
           }
          
           //console.log(typeof node[ key ][ 0 ], key)
-
-          if (node[ 0 ] === []){
-            //console.log(key)
-          }
           if (typeof node[ key ][ 0 ] === "undefined") {
              //console.log(node[ 0 ].length)
              var _ar = [];
@@ -490,6 +505,11 @@ var Container = React.createClass({
         ptr = foo; 
         
 
+        if (typeof key === "object"){
+          console.log(key)
+          arrow = "invisible";
+        }
+        
         var vis = {};
         //DETERMIN IF CLICKED
         //initallially visiblity is true 

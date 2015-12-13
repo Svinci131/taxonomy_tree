@@ -61,6 +61,7 @@ body {
 	background-color: white;
 	margin: 2px;
 	border: 1px solid black;
+	display:inline-block;
 }
 
 .invisible {
