@@ -308,26 +308,26 @@ var Container = React.createClass({
     });
   },  
   setVisibility: function (id, event) { 
-    var opens = this.state.open;
-
-    if ( opens === null ) {
-      opens = {};
-    }
-
-    if ( typeof opens[ id ] === "undefined" ) {
-      opens[id] = false;
-    }
-    else {
-      opens[ id ] = !opens[ id ];  
-    }
+    // var opens = this.state.open;
     
-    this.setState({
-      open: opens,
-      // isInitial: false
-    });
-    // console.log( this.state );
+    // if ( opens === null ) {
+    //   opens = {};
+    // }
+    // //if it's the first time 
+    // //if its never been clicked
+    // if ( typeof opens[ id ] === "undefined" ) {
+    //   opens[id] = true;
+    // }
+    // else {
+    //   opens[ id ] = !opens[ id ];  
+    // }
+    
+    // this.setState({
+    //   open: opens,
+    //   // isInitial: false
+    // }, function(){console.log(opens)});
+
     this.setState({visible: !this.state.visible}, function(){
-      //console.log(this.state.visible)
     });
     this.state.clicked[event.target.id]=this.state.visible;
   },
@@ -424,35 +424,10 @@ var Container = React.createClass({
              if (_ar.length === 0){
               return null
              }
-          //return (<div></div>)
-          //   //console.log()
-          //   // if ( node[ key ].length > 0 ) {
-          //   //   var _ar = [];
-          //   //   for( var _item in node[ key ] ) {
-          //   //     console.log( _item, node[ key ][ _item ] );
-          //   //     _ar.push( node[ key ][ _item ] );
-          //   //   }
-          //   //   _ar.forEach(function(_arItem, idx){
-          //   //     node[ key ][ idx ] = _arItem;
-          //   //   });
-          //   //   return null;
-          //   // }
-          //   // else {
-          //   //   return null;
-          //   // }
-
-          //   // if ( node[ key ].length < 0 ) {
-          //   //   return null;
-          //   // }
-
-          //   //return null;
-            
           }
           
           var newAnimal = this.state.animal;
           var key = node[ 0 ].map(function (i, idx) {
-            // console.log(key[0],idx)
-            //console.log(this.state.animal, )
 
             if (newAnimal === i.AnimalName) {
               var animalStatus = "animal invisible"
@@ -486,25 +461,39 @@ var Container = React.createClass({
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
         
+
+        var vis = {};
         //DETERMIN IF CLICKED
 
         if (this.state.clicked[key] === true){ //if the key is clicked 
+          vis.display = "none";
           arrow = "glyphicon glyphicon-triangle-left";
         }
 
-        else if (typeof this.state.clicked[key] === "undefined" || this.state.clicked[key] === false ){
+        // if (key === "Chordata" || key === "Arthropoda"){
+        //   console.log("HERE", this.state.clicked[key])
+        // }
+        else if (typeof this.state.clicked[key] === "undefined"){
+          vis.display = "none";
+          arrow = "glyphicon glyphicon-triangle-left";
+        } 
+
+        else if ( this.state.clicked[key] === false ){
           arrow = "glyphicon glyphicon-triangle-bottom";
           //console.log("HERE", this.state.closed)
+          //console.log($("ptr" +key).children(), key)
         }
 
 
-        var vis = {};
-        if ( this.state.open && this.state.open[ "ptr" +key ] === false ) {
-            vis.display = "none";
-        }
-        // if ("ptr" +key === "ptr,") {
-        //   var ptrClass = invisible;
+        // var vis = {};
+        //if its the first time or the item is closed hide 
+        //if ( !this.state.open || this.state.open[ "ptr" +key ] === false ) {
+
+        //if its not the first time and this ky val of opens is closed
+        // if ( this.state.open && this.state.open[ "ptr" +key ] === false ) {
+        //     vis.display = "none";
         // }
+
 
         return <div id= {"ptr" +key} className= "cat-wrapper">
             <div id= {"title" +key} className="cat-title" onClick={this.guess.bind(this, key)}>

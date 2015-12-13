@@ -8,6 +8,7 @@ Try and guess if any of the animals on the board belong in another more specefie
 1. close all tabs initially- have them open as animals are added
 2. add thumbanail image
 3. make it so it'll update to closest cat- I thought I did that? 
-4. investigate that major sorting bug- it's the  if (typeof node[ key ][ 0 ] === "undefined")- still not sure how to fix 
-5. show animals details when you mouse over
-6. get rid of arrows in animal wrapper 
+4. show animals details when you mouse over
+5. get rid of arrows in animal wrapper 
+6. make it fail if your score 
+
