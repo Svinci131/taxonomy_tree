@@ -292,6 +292,7 @@ var Container = React.createClass({
   //foo = the tree after the render tree function  
   handleClick: function () {
     var animal = randomAnimalGenerator();
+
     if (this.state.currentGuess !== null){
       this.score(this.state.currentGuess, this.state.animal)
     }
@@ -310,6 +311,7 @@ var Container = React.createClass({
   setVisibility: function (id, event) { 
     // var opens = this.state.open;
     
+
     // if ( opens === null ) {
     //   opens = {};
     // }
@@ -329,26 +331,45 @@ var Container = React.createClass({
 
     this.setState({visible: !this.state.visible}, function(){
     });
-    this.state.clicked[event.target.id]=this.state.visible;
+    console.log("setvibility",event.target.id)
+
+    if (typeof this.state.clicked[event.target.id] === "undefined"){
+      this.state.clicked[event.target.id]=true;
+    }
+    else {
+      this.state.clicked[event.target.id]=!this.state.clicked[event.target.id];
+    }
+    
   },
   guess:function (id){
     if (event.target.className !== "glyphicon glyphicon-triangle-bottom" && event.target.className !== "glyphicon glyphicon-triangle-left") {
       if (this.state.animalsAreThere === true){
         
         var newAnimal = this.state.animal
-        console.log("FOO")
+        //console.log("FOO")
 
         this.setState({currentGuess: id}, function() {
           this.handleClick()
         });
       }
     }  
+    //
     compare(newAnimal)
   },
   score: function (id, newAnimal){
 
+        //console.log ("HERE",id)
         var oldScore_right = this.state.rightGuesses
         var oldScore_wrong = this.state.wrongGuesses
+
+        //console.log($(".cat-title div #key"+newAnimal.AnimalName))
+
+        var parentID = $("#key"+newAnimal.AnimalName).parent().parent().parent().parent().attr("id")
+        parentID = parentID.substring(3, parentID.length)
+        rightPlace = parentID
+        console.log(rightPlace)
+
+        //you have to click it open first?
 
         var animalHolder = document.getElementById("ptr"+id).childNodes[1].childNodes[0].childNodes[0]
         //console.log("HERE", this.state.animal.AnimalName, animalHolder.childNodes[0],animalHolder.childNodes[1])
@@ -359,9 +380,7 @@ var Container = React.createClass({
         var rightHolder = []
         
         children.forEach (function (item){
-          //console.log (item.id, newAnimal)
           if (item.id === "key"+newAnimal.AnimalName) {
-            //console.log ("you got it right")
             rightHolder.push(1)
           }
         });
@@ -372,7 +391,16 @@ var Container = React.createClass({
 
         var newScore_right = (rightHolder +++ oldScore_right)
         var newScore_wrong = (wrongHolder +++ oldScore_wrong)
-       
+
+        // console.log("old", oldScore_right, oldScore_wrong)
+        // console.log("new", newScore_right, newScore_wrong)
+
+        if (newScore_right > oldScore_right) {
+          this.state.clicked[id]=true;
+        }
+        //issues are if you're wrong how do you get the right id
+        // how do you open the parent tabs of the right id 
+
         this.setState({
           rightGuesses: newScore_right
         });
@@ -410,7 +438,7 @@ var Container = React.createClass({
           //console.log(typeof node[ key ][ 0 ], key)
 
           if (node[ 0 ] === []){
-            console.log(key)
+            //console.log(key)
           }
           if (typeof node[ key ][ 0 ] === "undefined") {
              //console.log(node[ 0 ].length)
@@ -464,36 +492,30 @@ var Container = React.createClass({
 
         var vis = {};
         //DETERMIN IF CLICKED
+        //initallially visiblity is true 
+        // if (key === "Animalia"){
+        //   // console.log(key, this.state.visible, this.state.clicked[key])
+        // }
+        // if (key === "Chordata"){
+        //    console.log(key, this.state.visible, this.state.clicked[key])
+        // }
+       
+        //on click visibility is the oposite of what is was before 
+        // if they're undefined when they're clicked they turn false 
 
-        if (this.state.clicked[key] === true){ //if the key is clicked 
+        if (this.state.clicked[key] === false){ //
           vis.display = "none";
           arrow = "glyphicon glyphicon-triangle-left";
         }
 
-        // if (key === "Chordata" || key === "Arthropoda"){
-        //   console.log("HERE", this.state.clicked[key])
-        // }
-        else if (typeof this.state.clicked[key] === "undefined"){
+        else if (typeof this.state.clicked[key] === "undefined"){ //initially everything is closed 
           vis.display = "none";
           arrow = "glyphicon glyphicon-triangle-left";
         } 
 
-        else if ( this.state.clicked[key] === false ){
+        else if ( this.state.clicked[key] === true ){
           arrow = "glyphicon glyphicon-triangle-bottom";
-          //console.log("HERE", this.state.closed)
-          //console.log($("ptr" +key).children(), key)
         }
-
-
-        // var vis = {};
-        //if its the first time or the item is closed hide 
-        //if ( !this.state.open || this.state.open[ "ptr" +key ] === false ) {
-
-        //if its not the first time and this ky val of opens is closed
-        // if ( this.state.open && this.state.open[ "ptr" +key ] === false ) {
-        //     vis.display = "none";
-        // }
-
 
         return <div id= {"ptr" +key} className= "cat-wrapper">
             <div id= {"title" +key} className="cat-title" onClick={this.guess.bind(this, key)}>
