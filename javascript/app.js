@@ -505,11 +505,7 @@ var Container = React.createClass({
         ptr = foo; 
         
 
-        if (typeof key === "object"){
-          console.log(key)
-          arrow = "invisible";
-        }
-        
+      
         var vis = {};
         //DETERMIN IF CLICKED
         //initallially visiblity is true 
@@ -530,12 +526,23 @@ var Container = React.createClass({
 
         else if (typeof this.state.clicked[key] === "undefined"){ //initially everything is closed 
           vis.display = "none";
-          arrow = "glyphicon glyphicon-triangle-left";
+          if (typeof key !== "string") {
+              console.log(key)
+              arrow = "invisible";
+          }
+
+          else {
+            arrow = "glyphicon glyphicon-triangle-left";
+          }
+          
         } 
 
         else if ( this.state.clicked[key] === true ){
           arrow = "glyphicon glyphicon-triangle-bottom";
+           
+        
         }
+
 
         return <div id= {"ptr" +key} className= "cat-wrapper">
             <div id= {"title" +key} className="cat-title" onClick={this.guess.bind(this, key)}>
