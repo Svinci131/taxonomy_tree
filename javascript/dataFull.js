@@ -105,7 +105,7 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"index":8,"url":"https://en.wikipedia.org/wiki/Cat"},
 			
 			{	
-				"AnimalName":"Deathstalker (aka Israeli yellow scorpion)",
+				"AnimalName":"Deathstalker aka Israeli Yellow Scorpion",
 				"Kingdom":{"href":"https://en.wikipedia.org/wiki/Animal","text":"Animalia"},
 				"Phylum":{"href":"https://en.wikipedia.org/wiki/Arthropoda","text":"Arthropoda"},
 				"Class":{"href":"https://en.wikipedia.org/wiki/Arachnida","text":"Arachnida"},

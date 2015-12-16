@@ -472,10 +472,10 @@ var Container = React.createClass({
                var className = i.Image.src
                var style = {backgroundImage: 'url(' + className + ')'} 
 
-                // <strong>{i.AnimalName}</strong>
+                // 
             return (
              <div id={"key"+i.AnimalName} className= {animalStatus} style={style}>
-
+                <strong className="hoverText">{i.AnimalName}</strong>
              
              </div>
             );
@@ -549,6 +549,12 @@ var Container = React.createClass({
               <div id="tree" className="left_col tree_wrapper">
                 <div className="left_col_text">
                   <h1>Taxonomy!!!</h1>
+                  <div className="mobile">
+                    <strong className="score">Score:</strong>
+                    <div className="score">Wrong:{this.state.wrongGuesses}</div>
+                    <div className="score">Right:{this.state.rightGuesses}</div>
+                    <div>{this.drawCard()}</div>
+                  </div>
                   <p>Species are classified by their Kindom, Phyum, Class, Order, Family, and Genus. Try guess if any of the species on the tree belong in a closer group with any of the others. Click here to see a practice round.</p>
                 </div>
                 <div id="state.foo" className="tree" data-foo={this.state.foo}>
@@ -567,27 +573,29 @@ var Container = React.createClass({
   }
 });
 
-var maxWidth  = $('#outer').width();
-var maxHeight = $('#state.foo').height();
+// var maxWidth  = $('#outer').width();
+// var maxHeight = $('#state.foo').height();
 
-$(window).resize(function(evt) {
-    var $window = $(window);
-    var width = $window.width();
-    var height = $window.height();
-    var scale;
+// $(window).resize(function(evt) {
+//     var $window = $(window);
+//     var width = $window.width();
+//     var height = $window.height();
+//     var scale;
 
-    // early exit
-    if(width >= maxWidth && height >= maxHeight) {
-        $('#outer').css({'-webkit-transform': ''});
-        $('#wrap').css({ width: '', height: '' });
-        return;
-    }
+//     // early exit
+//     if(width >= maxWidth && height >= maxHeight) {
+//         $('#outer').css({'-webkit-transform': ''});
+//         $('#wrap').css({ width: '', height: '' });
+//         return;
+//     }
 
-    scale = Math.min(width/maxWidth, height/maxHeight);
+//     scale = Math.min(width/maxWidth, height/maxHeight);
 
-    $('#outer').css({'-webkit-transform': 'scale(' + scale + ')'});
-    $('#wrap').css({ width: maxWidth * scale, height: maxHeight * scale });
-});
+//     $('#outer').css({'-webkit-transform': 'scale(' + scale + ')'});
+//     $('#wrap').css({ width: maxWidth * scale, height: maxHeight * scale });
+// });
+
+
 
 
 buildTree();
