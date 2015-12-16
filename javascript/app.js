@@ -469,9 +469,14 @@ var Container = React.createClass({
               var animalStatus = "animal"
             }
 
+               var className = i.Image.src
+               var style = {backgroundImage: 'url(' + className + ')'} 
+
+                // <strong>{i.AnimalName}</strong>
             return (
-             <div id={"key"+i.AnimalName} className= {animalStatus}>
-              <strong>{i.AnimalName}</strong>
+             <div id={"key"+i.AnimalName} className= {animalStatus} style={style}>
+
+             
              </div>
             );
           });
@@ -539,7 +544,6 @@ var Container = React.createClass({
   render: function() {
     return (      
           <div className="container">
-           
               <div id="tree" className="left_col tree_wrapper">
                 <div className="left_col_text">
                   <h1>Taxonomy!!!</h1>
@@ -551,6 +555,7 @@ var Container = React.createClass({
               </div>
               <div className="right_col sidebar">
                 <div>{this.drawCard()}</div>
+                <strong className="score">Score:</strong>
                 <div className="score">Wrong:{this.state.wrongGuesses}</div>
                 <div className="score">Right:{this.state.rightGuesses}</div>
               </div>

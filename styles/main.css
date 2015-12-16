@@ -90,7 +90,6 @@ h1 {
 }
 
 .score {
-
 	margin-left:10%;
 	width:80%;
 }
@@ -108,9 +107,12 @@ h1 {
 	size:14px;
 	background-color: white;
 	font-family: 'Source Sans Pro', sans-serif;
-	margin-bottom: 0px;
+	
 }
 
+.thumbnail_title h4 {
+	margin-bottom: 0px;
+}
 .thumbnail_title .italic {
 	font-style: italic;
 }
@@ -130,7 +132,15 @@ h1 {
 
 
 .animal {
-	background-color: white;
+	/*background-color: white;*/
+	width:85px;
+	height:80px;
+	background-size: cover;
+	 -webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-position: center center;
+  	background-repeat: no-repeat;
 	margin: 2px;
 	border: 1px solid black;
 	display:inline-block;
@@ -197,3 +207,6 @@ h1 {
     background: url('http://placekitten.com/640/480') no-repeat center center;
     -webkit-transform-origin: top left;
 }
+
+
+

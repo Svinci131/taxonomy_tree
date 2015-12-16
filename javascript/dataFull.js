@@ -154,9 +154,9 @@ var allAnimals = {"name":"AnimalCrawlerNewest","count":11,"frequency":"Manual Cr
 				"Family":{"href":"https://en.wikipedia.org/wiki/Spheniscidae","text":"Spheniscidae"},
 				"Genus":{"href":"https://en.wikipedia.org/wiki/Aptenodytes","text":"Aptenodytes"},
 				"Species":"A. forsteri",
-				"Image":{"alt":"Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpgs","href":"https://en.wikipedia.org/wiki/Emperor_penguin#/media/File:Aptenodytes_forsteri_-Snow_Hill_Island,_Antarctica_-adults_and_juvenile-8.jpg",
-				"src":"https://upload.wikimedia.org/wikipedia/commons/a/a3/Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg","text":""},
-				"index":1,"url":"https://en.wikipedia.org/wiki/Aardvark"},
+				"Image":{"href":"https://en.wikipedia.org/wiki/Emperor_penguin#/media/File:Kaiserpinguine_mit_Jungen.jpg",
+				"src":"https://upload.wikimedia.org/wikipedia/commons/2/28/Kaiserpinguine_mit_Jungen.jpg","text":"Pengiun"},
+				"index":1,"url":"https://en.wikipedia.org/wiki/Emperor_penguin"},
 			//f
 			//g 
 			{	
