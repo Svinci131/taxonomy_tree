@@ -9,14 +9,15 @@ events.on('foo', function() {
   _render(  );
 });
 
+// <Container data={JSON.stringify(tree)} now={Date.now()}/>,
 function _render(  ) {
   //console.log( tree )
     React.render(
+
      <Container data={JSON.stringify(tree)} now={Date.now()}/>,
      document.getElementById('content')
     );  
 }
-
 
 //goes through the data file, gets the key values from every animal 
 //then uses them to build a tree object with every Kingdom, Phylum, Class Genus and Species
@@ -289,6 +290,10 @@ var Container = React.createClass({
       
     }
   }, 
+  componentDidMount: function (){
+    console.log ("test")
+    this.handleClick()
+  },
   //foo = the tree after the render tree function  
   handleClick: function () {
     var animal = randomAnimalGenerator();
@@ -342,19 +347,6 @@ var Container = React.createClass({
         var oldScore_right = this.state.rightGuesses
         var oldScore_wrong = this.state.wrongGuesses
 
-        // console.log(tree)
-        //on score get every parent 
-
-        //if object has animals leave set it to open 
-        // console.log(document.getElementById("ptrAnimalia").childNodes)
-        // console.log($("#ptrAnimalia").children)
-        //console.log($(".cat-title div #key"+newAnimal.AnimalName))
-
-        // var parent = $("#key"+newAnimal.AnimalName).parent().parent().parent().parent().attr("id")
-        // parent = parent.substring(3, parent.length)
-        // // rightPlace = parentID
-        // console.log("HERE", parent)
-
         var parentEls = $("#key"+newAnimal.AnimalName).parents()
           .map(function() {
             if ($(this).attr("class") === "cat-wrapper"){
@@ -364,14 +356,11 @@ var Container = React.createClass({
                 console.log(parentID)
 
                 return parentID;
-                //console.log(this.state.clicked)
-                //this.state.clicked[parentID] = true;
               }
             }
             
           
         }).get()//
-
 
         //console.log(this.state.clicked)
         console.log( parentEls )
@@ -425,7 +414,13 @@ var Container = React.createClass({
   },
   drawCard: function (){
     if (this.state.animal !== null){
-      return (<div>{this.state.animal.AnimalName}</div>)
+      var className = this.state.animal.Image.src
+      var style = {backgroundImage: 'url(' + className + ')'}
+      return (<div style={style} className="thumbnail_photo">
+
+        <h4>{this.state.animal.AnimalName}</h4>
+        <h4>{this.state.animal.Species}</h4>
+        </div>)
     }
   },
   renderTree: function( data ) {
@@ -471,7 +466,7 @@ var Container = React.createClass({
 
             return (
              <div id={"key"+i.AnimalName} className= {animalStatus}>
-              {i.AnimalName}
+              <strong>{i.AnimalName}</strong>
              </div>
             );
           });
@@ -536,29 +531,94 @@ var Container = React.createClass({
         return ptr;
     }
   },
-  render: function() {
-    return (
-          <div className="container-fluid">
-            <div className="row">
+  updateDimensions:function () {
+  
+      var maxHeight = $('#outer').height();
+      // console.log(maxHeight,this.state.height)
+      return 10
 
-              <div className="col-md-4 guess">
-                <button onClick={this.handleClick}>Play</button>
+  },
+  scale: function () {
+
+  },
+  render: function() {
+    this.scale()
+    return (      
+        <div>
+          <div className="container-fluid">
+          
+        
+            <div className="row">
+              <div id="tree" className="col-md-8">
+                <h1>Taxonomy!!!</h1>
+                    <div id="state.foo" data-foo={this.state.foo}>
+                      <div id="renderTree">{this.renderTree( tree )}</div>
+                    </div>
+              </div>
+              <div className="col-md-4 guess sidebar">
+         
                 <div>{this.drawCard()}</div>
                 <div className="score">Wrong:{this.state.wrongGuesses}</div>
                 <div className="score">Right:{this.state.rightGuesses}</div>
               </div>
-              <div className="col-md-8">
-                <h1>Taxonomy!!!</h1>
-                <div id="state.foo" data-foo={this.state.foo}>
-                  <div id="renderTree">{this.renderTree( tree )}</div>
-                </div>
-              </div>
               
             </div>
-          </div>);
+          </div>
+        </div>
+          );
   }
 });
 
+var maxWidth  = $('#outer').width();
+var maxHeight = $('#outer').height();
+
+$(window).resize(function(evt) {
+    var $window = $(window);
+    var width = $window.width();
+    var height = $window.height();
+    var scale;
+
+    // early exit
+    if(width >= maxWidth && height >= maxHeight) {
+        $('#outer').css({'-webkit-transform': ''});
+        $('#wrap').css({ width: '', height: '' });
+        return;
+    }
+
+    scale = Math.min(width/maxWidth, height/maxHeight);
+
+    $('#outer').css({'-webkit-transform': 'scale(' + scale + ')'});
+    $('#wrap').css({ width: maxWidth * scale, height: maxHeight * scale });
+});
+
+
+
+var WindowDimensions = React.createClass({
+    render: function() {
+        return (<div> 
+          <div id="wrap">
+            <div id="outer">
+                <div id="inner"></div>
+                <div id="text">Lorem ipsum</div>
+            </div>
+          </div>
+          </div>);
+    },
+    updateDimensions: function() {
+        this.setState({width: $(window).width(), height: $(window).height()});
+        // var maxHeight = $('#outer').height();
+        // console.log(maxHeight,this.state.height)
+    },
+    componentWillMount: function() {
+        this.updateDimensions();
+    },
+    componentDidMount: function() {
+        window.addEventListener("resize", this.updateDimensions);
+    },
+    componentWillUnmount: function() {
+        window.removeEventListener("resize", this.updateDimensions);
+    }
+});
 
 
 buildTree();

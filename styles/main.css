@@ -37,26 +37,33 @@ body {
 	background-color: rgb(160,181,183);
 
 }
-.animal-card {
+.thumbnail-card {
 	background-color: rgb(65, 107, 111);
 }
 
-.animal-card-title {
+.thumbnail-title {
 	text-align: center;
 	size:14px;
 }
 
-.animal-card-title .italic {
+.thumbnail_title .italic {
 	font-style: italic;
 }
-.animal-card-photo {
+.thumbnail_photo {
 	width:95%;
 	height:160px;
 	border: 1px solid #333;
 	margin-top:2%;
 	margin-bottom:2%;
 	background-size: cover;
+	 -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
+
+
 .animal {
 	background-color: white;
 	margin: 2px;
@@ -110,4 +117,18 @@ body {
 
 .guessAnimal {
 	display: none;
+}
+
+#wrap {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    background-color: red;
+}
+#outer {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    background: url('http://placekitten.com/640/480') no-repeat center center;
+    -webkit-transform-origin: top left;
 }
