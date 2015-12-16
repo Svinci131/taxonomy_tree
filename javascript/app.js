@@ -498,6 +498,7 @@ var Container = React.createClass({
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
         
+        var className = "cat-title"
         var vis = {};
        
         if (this.state.clicked[key] === false){ //
@@ -505,11 +506,12 @@ var Container = React.createClass({
           arrow = "glyphicon glyphicon-triangle-left";
         }
 
-        else if (typeof this.state.clicked[key] === "undefined"){ //initially everything is closed 
+        else if (typeof this.state.clicked[key] === "undefined" ){ //initially everything is closed 
           vis.display = "none";
           if (typeof key !== "string") {
               console.log(key)
               arrow = "invisible";
+              className = "cat-title-blank"
           }
 
           else {
@@ -526,7 +528,7 @@ var Container = React.createClass({
 
 
         return <div id= {"ptr" +key} className= "cat-wrapper">
-            <div id= {"title" +key} className="cat-title" onClick={this.guess.bind(this, key)}>
+            <div id= {"title" +key} className={className} onClick={this.guess.bind(this, key)}>
               { (key !== "undefined") ? key : "" }
               <span className = {arrow} id={key} onClick={this.setVisibility.bind(this, "ptr" +key)}></span>
             </div>

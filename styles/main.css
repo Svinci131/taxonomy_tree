@@ -69,9 +69,9 @@ h1 {
 .cat-wrapper {
 	margin-left: 10%;
 	border-left: 1px solid white;
-
-
 }
+
+
 
 .cat-title {
 	background-color: rgb(251, 239, 202);
@@ -80,6 +80,16 @@ h1 {
 	padding:13px;
 	font-size: 18px;
 	display: inline-block;
+}
+
+.cat-title-blank {
+	background-color: none!important;
+	margin-left:6%;
+	margin-bottom: 6%;
+	/*padding:13px;*/
+	font-size: 18px;
+	display: inline-block;
+}
 }
 
 .sidebar {
@@ -96,8 +106,9 @@ h1 {
 
 .thumbnail_card {
 	border: 1px solid black;
-	margin-left:10%;
-	width:80%;
+	margin-left:13%;
+	margin-top:10%;
+	width:75%;
 	box-shadow: 0 0 5px rgba(0,0,0,.75);
 	margin-bottom: 10%;
 }
