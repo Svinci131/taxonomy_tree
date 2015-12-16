@@ -2,6 +2,7 @@ var animalList = allAnimals.results.collection1
 var tree = {}
 // buildTree ();
 
+//updates foo and renders 
 var events = new EventEmitter();
 events.on('foo', function() {
   randomAnimalGenerator();
@@ -17,7 +18,9 @@ function _render(  ) {
 }
 
 
-
+//goes through the data file, gets the key values from every animal 
+//then uses them to build a tree object with every Kingdom, Phylum, Class Genus and Species
+//ex. Animalia {chordata{mammalia{carivora}}}
 function buildTree () {
   for ( var i = 0; i < animalList.length; ++i ) {
     addTo( animalList[i]);
@@ -56,9 +59,11 @@ function buildTree () {
     })
   }
   console.log( tree )
-  _render( tree, events );
+  _render( tree, events ); 
 }
 
+//takes an animal obj from our data file 
+//traverses the tree and adds a new animal in the appropriate place
 function compare (item) {
   //get every the key value for each item  
   var tags = ['Kingdom', 'Phylum', 'Class', 'Order', 'Family', 'Genus', 'Species' ];
@@ -254,12 +259,10 @@ function compare (item) {
   else {    
     K[0] = [item];
   } 
-            
-
-    //check O
-
 }//compare
 
+//grabs a random animal
+//removes it from the data obj
 function randomAnimalGenerator  () {
     var randomIndex = Math.floor( Math.random()*animalList.length );
     var randomAnimal = animalList[ randomIndex ] ;
@@ -267,12 +270,9 @@ function randomAnimalGenerator  () {
     animalList.splice( randomIndex, 1 );
    // console.log(randomAnimal.AnimalName);
     return randomAnimal
-}//grabs a random animal
-//removes it from the data obj
-//runs the compare function to find it's appropriate place in the tree
+}
 
-
-/////
+///// renders the tree and handles all the UI updates
 var Container = React.createClass({
   getInitialState: function() {
     return {
@@ -441,26 +441,16 @@ var Container = React.createClass({
     var keys = Object.keys( node );
     if ( keys.length !== 0 ) {
 
-      return keys.map(function( key, i ){//took ou tthe i next to key            
-        // if (typeof node[ key ][ 0 ] !== "undefined") {
-        //   //console.log("HERE", node[key][0], key)
-        //   this.state.clicked[key] = true;
-        //   //console.log("HERE",this.state.clicked)
-        // }//means your can't close it 
+      return keys.map(function( key, i ){           
         
         if ( !isNaN(parseInt( key ) ) ) {
 
-          if (key === "0"){
-            //console.log(key, ptr.props.children.props.children)
-          }
-         
-          //console.log(typeof node[ key ][ 0 ], key)
           if (typeof node[ key ][ 0 ] === "undefined") {
-             //console.log(node[ 0 ].length)
+
              var _ar = [];
              if ( node[ key ].length > 0 ) {
                for( var _item in node[ key ] ) {
-                //console.log( _item, node[ key ][ _item ] );
+
                 _ar.push( node[ key ][ _item ] );
               }
              }
@@ -488,7 +478,6 @@ var Container = React.createClass({
         }//if isnan
 
       else {
-        //console.log ()
         var key = key;
       }
         var props = {
@@ -504,21 +493,8 @@ var Container = React.createClass({
         ptr.props.children[ ptr.props.children.length ] = foo;
         ptr = foo; 
         
-
-      
         var vis = {};
-        //DETERMIN IF CLICKED
-        //initallially visiblity is true 
-        // if (key === "Animalia"){
-        //   // console.log(key, this.state.visible, this.state.clicked[key])
-        // }
-        // if (key === "Chordata"){
-        //    console.log(key, this.state.visible, this.state.clicked[key])
-        // }
        
-        //on click visibility is the oposite of what is was before 
-        // if they're undefined when they're clicked they turn false 
-
         if (this.state.clicked[key] === false){ //
           vis.display = "none";
           arrow = "glyphicon glyphicon-triangle-left";
@@ -565,18 +541,19 @@ var Container = React.createClass({
           <div className="container-fluid">
             <div className="row">
 
+              <div className="col-md-4 guess">
+                <button onClick={this.handleClick}>Play</button>
+                <div>{this.drawCard()}</div>
+                <div className="score">Wrong:{this.state.wrongGuesses}</div>
+                <div className="score">Right:{this.state.rightGuesses}</div>
+              </div>
               <div className="col-md-8">
                 <h1>Taxonomy!!!</h1>
                 <div id="state.foo" data-foo={this.state.foo}>
                   <div id="renderTree">{this.renderTree( tree )}</div>
                 </div>
               </div>
-              <div className="col-md-4 guess">
-                <button onClick={this.handleClick}>another animal</button>
-                <div>{this.drawCard()}</div>
-                <div className="score">Wrong:{this.state.wrongGuesses}</div>
-                <div className="score">Right:{this.state.rightGuesses}</div>
-              </div>
+              
             </div>
           </div>);
   }

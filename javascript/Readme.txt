@@ -19,6 +19,5 @@ Try and guess if any of the animals on the board belong in another more specefie
 2. add thumbanail image
 3. make it so it'll update to closest cat- I thought I did that? 
 4. show animals details when you mouse over
-5. get rid of arrows in animal wrapper 
 6. make it fail if your score 
 
