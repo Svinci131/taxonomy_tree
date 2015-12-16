@@ -416,11 +416,16 @@ var Container = React.createClass({
     if (this.state.animal !== null){
       var className = this.state.animal.Image.src
       var style = {backgroundImage: 'url(' + className + ')'}
-      return (<div style={style} className="thumbnail_photo">
-
-        <h4>{this.state.animal.AnimalName}</h4>
-        <h4>{this.state.animal.Species}</h4>
-        </div>)
+      return (
+          <div className="thumbnail_card">
+            <div style={style} className="thumbnail_photo">
+            </div>
+            <div className="thumbnail_title">
+                <h4>{this.state.animal.AnimalName}</h4>
+                <p className="thumbnail_title italic">{this.state.animal.Species}</p>
+            </div>
+          </div>)
+     
     }
   },
   renderTree: function( data ) {
@@ -531,46 +536,32 @@ var Container = React.createClass({
         return ptr;
     }
   },
-  updateDimensions:function () {
-  
-      var maxHeight = $('#outer').height();
-      // console.log(maxHeight,this.state.height)
-      return 10
-
-  },
-  scale: function () {
-
-  },
   render: function() {
-    this.scale()
     return (      
-        <div>
-          <div className="container-fluid">
-          
-        
-            <div className="row">
-              <div id="tree" className="col-md-8">
-                <h1>Taxonomy!!!</h1>
-                    <div id="state.foo" data-foo={this.state.foo}>
-                      <div id="renderTree">{this.renderTree( tree )}</div>
-                    </div>
+          <div className="container">
+           
+              <div id="tree" className="left_col tree_wrapper">
+                <div className="left_col_text">
+                  <h1>Taxonomy!!!</h1>
+                  <p>Species are classified by their Kindom, Phyum, Class, Order, Family, and Genus. Try guess if any of the species on the tree belong in a closer group with any of the others. Click here to see a practice round.</p>
+                </div>
+                <div id="state.foo" className="tree" data-foo={this.state.foo}>
+                  <div id="renderTree">{this.renderTree( tree )}</div>
+                </div>
               </div>
-              <div className="col-md-4 guess sidebar">
-         
+              <div className="right_col sidebar">
                 <div>{this.drawCard()}</div>
                 <div className="score">Wrong:{this.state.wrongGuesses}</div>
                 <div className="score">Right:{this.state.rightGuesses}</div>
               </div>
-              
-            </div>
-          </div>
+       
         </div>
           );
   }
 });
 
 var maxWidth  = $('#outer').width();
-var maxHeight = $('#outer').height();
+var maxHeight = $('#state.foo').height();
 
 $(window).resize(function(evt) {
     var $window = $(window);
@@ -589,35 +580,6 @@ $(window).resize(function(evt) {
 
     $('#outer').css({'-webkit-transform': 'scale(' + scale + ')'});
     $('#wrap').css({ width: maxWidth * scale, height: maxHeight * scale });
-});
-
-
-
-var WindowDimensions = React.createClass({
-    render: function() {
-        return (<div> 
-          <div id="wrap">
-            <div id="outer">
-                <div id="inner"></div>
-                <div id="text">Lorem ipsum</div>
-            </div>
-          </div>
-          </div>);
-    },
-    updateDimensions: function() {
-        this.setState({width: $(window).width(), height: $(window).height()});
-        // var maxHeight = $('#outer').height();
-        // console.log(maxHeight,this.state.height)
-    },
-    componentWillMount: function() {
-        this.updateDimensions();
-    },
-    componentDidMount: function() {
-        window.addEventListener("resize", this.updateDimensions);
-    },
-    componentWillUnmount: function() {
-        window.removeEventListener("resize", this.updateDimensions);
-    }
 });
 
 
