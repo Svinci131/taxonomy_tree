@@ -550,12 +550,13 @@ var Container = React.createClass({
                 <div className="left_col_text">
                   <h1>Taxonomy!!!</h1>
                   <div className="mobile">
-                    <strong className="score">Score:</strong>
-                    <div className="score">Wrong:{this.state.wrongGuesses}</div>
-                    <div className="score">Right:{this.state.rightGuesses}</div>
-                    <div>{this.drawCard()}</div>
-                  </div>
+                      <div className="score">Wrong:{this.state.wrongGuesses}</div>
+                      <div className="score">Right:{this.state.rightGuesses}</div>
+                    </div>
                   <p>Species are classified by their Kindom, Phyum, Class, Order, Family, and Genus. Try guess if any of the species on the tree belong in a closer group with any of the others. Click here to see a practice round.</p>
+                </div>
+                <div className="mobile">
+                    {this.drawCard()}
                 </div>
                 <div id="state.foo" className="tree" data-foo={this.state.foo}>
                   <div id="renderTree">{this.renderTree( tree )}</div>
