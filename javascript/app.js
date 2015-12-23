@@ -543,7 +543,13 @@ var Container = React.createClass({
   hideOnLose:function() {
     if (this.state.wrongGuesses > 3) {
       return (<div className="youLose">
-               <div className="youLose_content"> stuff</div>
+               <div className="youLose_content"> 
+                <h2>Game Over</h2>
+                <h3> Final Score:</h3>
+                <div>Wrong:{this.state.wrongGuesses}</div>
+                <div>Right:{this.state.rightGuesses}</div>
+                <button onClick={function () {location.reload();}}>Play Again</button>
+               </div>
               </div>)
     }
   },
