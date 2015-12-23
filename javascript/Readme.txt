@@ -4,20 +4,12 @@ But, that animal may be more closely related to some animals on the tree than th
 Try and guess if any of the animals on the board belong in another more specefied group than click the group they belong to and see if you're right 
 
 
+2. make wrong guesses show a x
+3. scroll to the part where the newest animal is added 
 
-
-
-
-
-
-
-
-
-
-
-
-2. add thumbanail image
-3. make it so it'll update to closest cat- I thought I did that? 
-4. show animals details when you mouse over
+4. make it so it'll update to closest cat- I thought I did that? 
+5. show animals details when you mouse over
 6. make it fail if your score 
+7. how to - show a fixed about 
+8. show a hint 
 

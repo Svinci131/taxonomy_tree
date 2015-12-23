@@ -301,7 +301,7 @@ var Container = React.createClass({
     if (this.state.currentGuess !== null){
       this.score(this.state.currentGuess, this.state.animal)
     }
-    
+
     this.setState({
       animal: animal
     });
@@ -312,6 +312,8 @@ var Container = React.createClass({
     this.setState({
       foo: Math.random()
     });
+
+    
   },  
   setVisibility: function (id, event) { 
     this.setState({visible: !this.state.visible}, function(){
@@ -395,15 +397,6 @@ var Container = React.createClass({
         var newScore_right = (rightHolder +++ oldScore_right)
         var newScore_wrong = (wrongHolder +++ oldScore_wrong)
 
-        // console.log("old", oldScore_right, oldScore_wrong)
-        // console.log("new", newScore_right, newScore_wrong)
-
-        // if (newScore_right > oldScore_right) {
-        //   this.state.clicked[id]=true;
-        // }
-        //issues are if you're wrong how do you get the right id
-        // how do you open the parent tabs of the right id 
-
         this.setState({
           rightGuesses: newScore_right
         });
@@ -411,6 +404,11 @@ var Container = React.createClass({
         this.setState({
           wrongGuesses: newScore_wrong
         });
+
+        if (newScore_wrong > 3) {
+          // console.log(newScore_wrong)
+          //location.reload()
+        }
   },
   drawCard: function (){
     if (this.state.animal !== null){
@@ -469,10 +467,9 @@ var Container = React.createClass({
               var animalStatus = "animal"
             }
 
-               var className = i.Image.src
-               var style = {backgroundImage: 'url(' + className + ')'} 
-
-                // 
+              var className = i.Image.src
+              var style = {backgroundImage: 'url(' + className + ')'} 
+              // 
             return (
              <div id={"key"+i.AnimalName} className= {animalStatus} style={style}>
                 <strong className="hoverText">{i.AnimalName}</strong>
@@ -543,9 +540,17 @@ var Container = React.createClass({
         return ptr;
     }
   },
+  hideOnLose:function() {
+    if (this.state.wrongGuesses > 3) {
+      return (<div className="youLose">
+               <div className="youLose_content"> stuff</div>
+              </div>)
+    }
+  },
   render: function() {
     return (      
           <div className="container">
+            {this.hideOnLose()}
               <div id="tree" className="left_col tree_wrapper">
                 <div className="left_col_text">
                   <h1>Taxonomy!!!</h1>
@@ -558,11 +563,11 @@ var Container = React.createClass({
                 <div className="mobile">
                     {this.drawCard()}
                 </div>
-                <div id="state.foo" className="tree" data-foo={this.state.foo}>
+                <div id="state.foo" className="tree"  data-foo={this.state.foo}>
                   <div id="renderTree">{this.renderTree( tree )}</div>
                 </div>
               </div>
-              <div className="right_col sidebar">
+              <div className="right_col sidebar" >
                 <div>{this.drawCard()}</div>
                 <strong className="score">Score:</strong>
                 <div className="score">Wrong:{this.state.wrongGuesses}</div>
