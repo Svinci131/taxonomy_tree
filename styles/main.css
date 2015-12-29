@@ -58,7 +58,8 @@ body {
 }
 h1 {
 	margin-top: 0px;
-	font-family: 'Langdon', sans-serif;
+	margin-bottom: 10%;
+	font-family: 'Oswald', sans-serif;
 	text-transform: uppercase;
 	
 }
@@ -196,7 +197,7 @@ strong {
 	overflow: scroll;
 }
 .modal_title {
-	font-family: 'Langdon', sans-serif;
+	font-family: 'Oswald', sans-serif;
 	text-transform: uppercase;
 }
 .modal_close {
@@ -213,7 +214,7 @@ strong {
 .black_button {
 	color:black;
     padding: 6px;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 }
 .youLose .black_button  {
 	margin-top: 5%;
@@ -367,6 +368,9 @@ strong {
 	/*h4 { 
 		margin:0px;
 	}*/
+	.black_button {
+    	margin-left: 40%;
+	}
 	.tree {
 		margin-left:3%;
 	}
@@ -426,6 +430,7 @@ strong {
 
 	h1 {
 		text-align: center;
+		margin-bottom: 8%;
 	}
 
 }	
