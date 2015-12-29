@@ -26,6 +26,7 @@ body {
     width: 100%;
     background-color: black;
     position: fixed;
+    padding: 0px;
 }
 .left_col {
     position: absolute;
@@ -225,7 +226,6 @@ strong {
 	background-color: rgb(42,52,64);
 	position: absolute;
 	z-index: 99999;
-	margin-top: 5%;
 
 }
 .invisible {
@@ -368,7 +368,7 @@ strong {
 	/*h4 { 
 		margin:0px;
 	}*/
-	.black_button {
+	.left_col_text .black_button {
     	margin-left: 40%;
 	}
 	.tree {
