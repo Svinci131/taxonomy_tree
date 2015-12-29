@@ -10,6 +10,14 @@ body {
 	font-family: ‘Merriweather’, Georgia, serif;
 /*	font-family: 'Source Sans Pro', sans-serif;*/
 }	
+.inline-block{
+	display: inline-block;
+}
+.inline-block-p {
+	width: 40%;
+	float: left;
+	margin-right: 10px;
+}
 #content {
     height: 100%;
 }
@@ -160,18 +168,64 @@ h1 {
 	border: 1px solid black;
 	display:inline-block;
 }
+strong {
+	margin-top: 5px;
+}
+.wrong_box {
+	width:10%;
+	height:30%;
+	position: relative;
+	background-color: black;
+}
+.modal {
+	width: 120%;
+    height: 70%;
+    border: 3px solid rgb(42,52,64);
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    background-color: rgba(255,255,255,.95);
+    z-index: 99999;
+    padding: 10px;
+}
+.modal_content {
+	color:rgb(42,52,64);
+	background-color: white;
+	padding: 5px;
+	height: 90%;
+	overflow: scroll;
+}
+.modal_title {
+	font-family: 'Langdon', sans-serif;
+	text-transform: uppercase;
+}
+.modal_close {
+	padding: 12px;
+    float: right;
+    color: rgb(42,52,64);
+}
 .youLose_content {
 	text-align: center;
 	color:white;
 	position: relative;
 	top:200px;
 }
+.black_button {
+	color:black;
+    padding: 6px;
+    margin-bottom: 5%;
+}
+.youLose .black_button  {
+	margin-top: 5%;
+} 
 .youLose {
 	width: 100%;
 	height:100%;
 	background-color: rgb(42,52,64);
 	position: absolute;
 	z-index: 99999;
+	margin-top: 5%;
+
 }
 .invisible {
 	display:none;
@@ -250,12 +304,12 @@ h1 {
 		margin-left: 0px;
 	}
 	.tree {
-	
 	padding-left: 0;
     width: 90%;
     height: 90%;
     overflow: auto;
 	}
+
 	.left_col {
     position: absolute;
     top: 0;
