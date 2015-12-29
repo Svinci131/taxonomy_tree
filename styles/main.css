@@ -26,6 +26,7 @@ body {
     width: 100%;
     background-color: black;
     position: fixed;
+    padding: 0px;
 }
 .left_col {
     position: absolute;
@@ -58,7 +59,8 @@ body {
 }
 h1 {
 	margin-top: 0px;
-	font-family: 'Langdon', sans-serif;
+	margin-bottom: 10%;
+	font-family: 'Oswald', sans-serif;
 	text-transform: uppercase;
 	
 }
@@ -196,7 +198,7 @@ strong {
 	overflow: scroll;
 }
 .modal_title {
-	font-family: 'Langdon', sans-serif;
+	font-family: 'Oswald', sans-serif;
 	text-transform: uppercase;
 }
 .modal_close {
@@ -213,7 +215,7 @@ strong {
 .black_button {
 	color:black;
     padding: 6px;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
 }
 .youLose .black_button  {
 	margin-top: 5%;
@@ -224,7 +226,6 @@ strong {
 	background-color: rgb(42,52,64);
 	position: absolute;
 	z-index: 99999;
-	margin-top: 5%;
 
 }
 .invisible {
@@ -367,6 +368,9 @@ strong {
 	/*h4 { 
 		margin:0px;
 	}*/
+	.left_col_text .black_button {
+    	margin-left: 40%;
+	}
 	.tree {
 		margin-left:3%;
 	}
@@ -426,6 +430,7 @@ strong {
 
 	h1 {
 		text-align: center;
+		margin-bottom: 8%;
 	}
 
 }	
