@@ -637,7 +637,6 @@ var Container = React.createClass({
                           </div>
                           <div className="modal_row">
                            <strong>If you guess incorrectly the tree will move the animals into the right category and take away a point.</strong>
-                           <strong>*Game works on mobile, try playing on the go</strong>
                           </div>
                       
                       </div>
