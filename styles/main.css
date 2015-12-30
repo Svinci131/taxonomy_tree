@@ -191,21 +191,39 @@ strong {
     padding: 10px;
 }
 .modal_content {
-	color:rgb(42,52,64);
-	background-color: white;
-	padding: 5px;
-	height: 90%;
-	overflow: scroll;
+    color: rgb(42,52,64);
+    background-color: white;
+    padding: 5px;
+    position: relative;
+    height: 325px;
+    overflow: scroll;
 }
+.modal_row {
+	margin-bottom: 5%;
+	clear:left;
+}
+
 .modal_title {
 	font-family: 'Oswald', sans-serif;
-	text-transform: uppercase;
+    text-transform: uppercase;
+    color: grey;
+    margin-bottom: 2%;
+    margin-top: 2%;
 }
 .modal_close {
 	padding: 12px;
     float: right;
     color: rgb(42,52,64);
 }
+.modal_row_img {
+	display:inline-block;
+    width: 40%;
+}
+.modal_row img {
+		display: block;
+    	margin-bottom: 5px;
+    	width: 100%;
+	}
 .youLose_content {
 	text-align: center;
 	color:white;
@@ -292,6 +310,7 @@ strong {
 
 
 @media (max-width: 825px) {
+
 	.left_col_text {
 		display: inline-block;
 		vertical-align: top;
@@ -332,8 +351,15 @@ strong {
 
 }
 
-@media (max-width: 640px) {
-
+@media (max-width: 648px) {
+	.modal_row_img {
+		width:57%;
+	}
+	.modal_row img {
+		display: block;
+    	width: 80%;
+    	margin-bottom: 5px;
+	}
 	.thumbnail_title h4 {
 	text-align: center;
 	size:10px;
@@ -348,7 +374,16 @@ strong {
 	}
 
 }	
-
+@media (max-width: 507px) {
+	.modal_row_img {
+		width:55%;
+	}
+	.modal_row img {
+		display: inline-block;
+    	width: 80%;
+    	margin-bottom: 5px;
+	}
+}
 @media (max-width: 460px) {
 
 	.thumbnail_title h4{
@@ -368,6 +403,27 @@ strong {
 	/*h4 { 
 		margin:0px;
 	}*/
+	.modal {
+		left:10px;
+		width:85%;
+	}
+	.modal_title {
+		text-align: center;
+		font-size: 20px;
+	}
+	.modal_row p {
+		width:120%;
+	}
+	.modal_row_img {
+		margin-top: 2px;
+		width: 120%;
+	}
+	.modal_content {
+		width: 95%;
+	}
+	.modal p {
+   		 display: inline-block!important;
+	}
 	.left_col_text .black_button {
     	margin-left: 40%;
 	}
@@ -433,4 +489,22 @@ strong {
 		margin-bottom: 8%;
 	}
 
+}	
+@media (max-width: 322px) {
+	.score {
+		font-size: 20px;
+	}
+}
+@media (max-width: 294px) {
+	.score {
+		font-size: 17px;
+	}
+	.left_col_text .black_button {
+    margin-left: 29%;
+}
+}	
+@media (max-width: 240px) {
+	.score {
+		font-size: 14px;
+	}
 }	
