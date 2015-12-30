@@ -579,47 +579,59 @@ var Container = React.createClass({
                   <h1>Taxonomy!!!</h1>
                   <button onClick={this.howTo} className="black_button">How to Play</button>
                   <div className="modal" style={this.state.displayState}>
+                  
+                    <div onClick={this.closeModal} className="modal_close glyphicon glyphicon-remove"></div>
+                    <div>
+                    <h1 className="modal_title">How to Play:</h1>
                     <div className="modal_content">
-                      <div onClick={this.closeModal} className="modal_close glyphicon glyphicon-remove"></div>
-                      <h1 className="modal_title">How to Play:</h1>
-                     
-                      <div className="modal_content">
+                      
                         <p>The goal of "Taxonomy: The Game" is to build the tree of life by guessing if the animals on the board are more closely related to each other than the others. You get three incorrect guesses before you lose. 
                          </p>
-                          <h4 className="modal_title">Step One:</h4>
-                          <div>
-                            <img className="inline-block" src="imgs/animal_demo01.jpg" width="28%" height="auto" />
-                            <img className="inline-block" src="imgs/animal_demo02.jpg" width="28%" height="auto" />
+                          <div className="modal_row">
+                            <h4 className="modal_title">Step One:</h4>
+                            <div className="inline-block modal_row_img">
+                              <img className="inline-block" src="imgs/animal_demo01.jpg" width="28%" height="auto" />
+                              <img className="inline-block" src="imgs/animal_demo02.jpg" width="28%" height="auto" />
+                            </div>
                             <p className="inline-block-p">
                             Each turn you will get an animal card. The first card will have no relatives on the board, since there are no other animals yet, so we can put it in Animalia.
                             </p>
                           </div>
 
+                          
+                          <div className="modal_row">
                           <h4 className="modal_title">Step Two:</h4>
-                          <div >
+                          <div className="inline-block modal_row_img">
                             <img className="inline-block" src="imgs/animal_demo03.jpg" width="28%" height="auto" />
-                            <p className="inline-block-p">
-                             If you any animals are more closely related you click on the closest category they belong in. For example, The leopard and the guinea pig are Animals, but they're also both vertebrates and mammals, so we'll open "Chordata" and click on "Mammalia".
+                          </div>
+                          <p className="inline-block-p">If you any animals are more closely related you click on the closest category they belong in. For example, The leopard and the guinea pig are Animals, but they're also both vertebrates and mammals, so we'll open "Chordata" and click on "Mammalia".
                             </p>
                           </div>
                       
-                           <h4 className="modal_title">Step Three:</h4>
-                          <div>
-                            <img className="inline-block" src="imgs/animal_demo04.jpg" width="28%" height="auto" />
+                          
+                          <div className="modal_row">
+                            <h4 className="modal_title">Step Three:</h4>
+                            <div className="inline-block modal_row_img">
+                              <img className="inline-block" src="imgs/animal_demo04.jpg" width="28%" height="auto" />
+                            </div>
                             <p className="inline-block-p">
                               Each round it'll get more complex. All three animals are mammals, but the wolf and leopard are carnivores, so we'll click on "Carnivora" and move them into that category. 
                             </p>
                           </div>
-                           <h4 className="modal_title">Step Four:</h4>
-                          <div>
-                            <img className="inline-block" src="imgs/animal_demo041.jpg" width="28%" height="auto" />
-                            <img className="inline-block" src="imgs/animal_demo05.jpg" width="28%" height="auto" />
+                           
+                          <div className="modal_row">
+                            <h4 className="modal_title">Step Four:</h4>
+                            <div className="inline-block modal_row_img">
+                              <img className="inline-block" src="imgs/animal_demo041.jpg" width="28%" height="auto" />
+                              <img className="inline-block" src="imgs/animal_demo05.jpg" width="28%" height="auto" />
+                            </div>
                             <p className="inline-block-p">
                              The Orca and the Guinea pig are both in the class "Mammalia", but not the order "Carnivora", so I would click "Mammalia" and add the Orca there. The Great White shark is not in the "Mammalia" or "Carnivora", but it is in the Phylum "Chordata", so you would click on that.
                             </p>
                           </div>
-                            <strong>If you guess incorrectly the tree will move the animals into the right category and take away a point.</strong>
-                         
+                          <div className="modal_row">
+                           <strong>If you guess incorrectly the tree will move the animals into the right category and take away a point.</strong>
+                          </div>
                       
                       </div>
                     </div>
