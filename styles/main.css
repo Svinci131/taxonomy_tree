@@ -27,6 +27,7 @@ body {
     background-color: black;
     position: fixed;
     padding: 0px;
+    overflow: auto;
 }
 .left_col {
     position: absolute;
@@ -88,6 +89,7 @@ h1 {
 	padding:13px;
 	font-size: 18px;
 	display: inline-block;
+	cursor: pointer;
 }
 
 .cat-title-blank {
@@ -268,6 +270,7 @@ strong {
 
 #renderTree div .cat-title{
 	background-color: rgb(124,153,156) !important;
+	cursor: pointer;
 }
 
 #renderTree div div .cat-title{

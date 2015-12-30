@@ -557,18 +557,23 @@ var Container = React.createClass({
     }
   },
   howTo: function () {
+    $(".container").css ('overflow', "initial")
     this.setState({
       displayState: {
         display: 'block'
       }
+
     });
   },
   closeModal:function () {
+    $(".container").css ('overflow', "auto")
     this.setState({
       displayState: {
         display: 'none'
       }
+
     });
+    
   },
   render: function() {
     return (      
@@ -606,6 +611,7 @@ var Container = React.createClass({
                           </div>
                           <p className="inline-block-p">If you any animals are more closely related you click on the closest category they belong in. For example, The leopard and the guinea pig are Animals, but they're also both vertebrates and mammals, so we'll open "Chordata" and click on "Mammalia".
                             </p>
+
                           </div>
                       
                           
@@ -631,6 +637,7 @@ var Container = React.createClass({
                           </div>
                           <div className="modal_row">
                            <strong>If you guess incorrectly the tree will move the animals into the right category and take away a point.</strong>
+                           <strong>*Game works on mobile, try playing on the go</strong>
                           </div>
                       
                       </div>
